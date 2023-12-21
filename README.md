@@ -8,3 +8,9 @@ P2 RTL simulation flow
 6. Simulation pass wave as following：
    ![1703131889798](https://github.com/chinafpga/litedram_p2/assets/522003/f369f022-d456-4d3c-853d-559a2420c1f3)
 
+7. To speedup simulation, change litex c code is necessary. Changed c files is as following:
+   litex/soc/software/bios/main.c
+   litex/soc/software/libbase/memtest.c
+   litex/soc/software/liblitedram/sdram.c
+
+   Above 3 change files is in software 
