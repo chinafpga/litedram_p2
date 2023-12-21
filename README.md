@@ -5,3 +5,5 @@ P2 RTL simulation flow
 3. Enter "questa" sub-directory and Double click "elaborate.bat".
 4. Enter "questa" sub-directory and Double click "simulate.bat".
 5. P2 rtl simulation could run successfully now!
+6. Simulation pass wave as following：
+   ![1703131749069](https://github.com/chinafpga/litedram_p2/assets/522003/1659720a-61b6-40d7-8f9d-feb16fe7a2bd)
