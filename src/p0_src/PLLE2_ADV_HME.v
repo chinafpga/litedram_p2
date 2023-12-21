@@ -9,6 +9,7 @@ module PLLE2_ADV_HME(
 	CLKOUT2,
     CLKOUT3,
 	CLKOUT4,
+	CLKOUT5,
 	LOCKED
 );
 
@@ -22,6 +23,7 @@ output CLKOUT1;
 output CLKOUT2;
 output CLKOUT3;
 output CLKOUT4;
+output CLKOUT5;
 output LOCKED;
 
 parameter CLKFBOUT_MULT = 0;
@@ -49,7 +51,8 @@ pll_v1 pll_v1_inst(
     .clkout1( CLKOUT1 ),
     .clkout2( CLKOUT2 ),
     .clkout3( CLKOUT3 ),
-	.clkout4( CLKOUT4 )
+	.clkout4( CLKOUT4 ),
+	.clkout5( CLKOUT5 )
 );
 
 

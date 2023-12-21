@@ -66,6 +66,8 @@ wire          sys4x_clk;
 wire          sys4x_rst;
 wire          sys4x_dqs_clk;
 wire          sys4x_dqs_rst;
+wire          sys4x_iserdes_clk;
+wire          sys4x_iserdes_rst;
 wire          idelay_clk;
 wire          idelay_rst;
 wire          main_crg_reset;
@@ -83,9 +85,11 @@ wire          main_crg_clkout3;
 wire          main_crg_clkout_buf3;
 wire          main_crg_clkout4;
 wire          main_crg_clkout_buf4;
-`ifdef HME
-wire          main_crg_clkout5;//HME
+wire          main_crg_clkout5;
 wire          main_crg_clkout_buf5;
+`ifdef HME
+wire          main_crg_clkout6;//HME
+wire          main_crg_clkout_buf6;
 `endif
 reg     [3:0] main_crg_reset_counter = 4'd15;
 reg           main_crg_ic_reset = 1'd1;
@@ -373,70 +377,70 @@ reg     [1:0] main_a7ddrphy_rdphase_storage = 2'd2;
 reg           main_a7ddrphy_rdphase_re = 1'd0;
 reg     [1:0] main_a7ddrphy_wrphase_storage = 2'd3;
 reg           main_a7ddrphy_wrphase_re = 1'd0;
-(*mark_debug="true"*)wire   [13:0] main_a7ddrphy_dfi_p0_address;
-(*mark_debug="true"*)wire    [2:0] main_a7ddrphy_dfi_p0_bank;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p0_cas_n;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p0_cs_n;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p0_ras_n;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p0_we_n;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p0_cke;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p0_odt;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p0_reset_n;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p0_act_n;
-(*mark_debug="true"*)wire   [31:0] main_a7ddrphy_dfi_p0_wrdata;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p0_wrdata_en;
-(*mark_debug="true"*)wire    [3:0] main_a7ddrphy_dfi_p0_wrdata_mask;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p0_rddata_en;
-(*mark_debug="true"*)reg    [31:0] main_a7ddrphy_dfi_p0_rddata = 32'd0;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p0_rddata_valid;
-(*mark_debug="true"*)wire   [13:0] main_a7ddrphy_dfi_p1_address;
-(*mark_debug="true"*)wire    [2:0] main_a7ddrphy_dfi_p1_bank;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p1_cas_n;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p1_cs_n;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p1_ras_n;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p1_we_n;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p1_cke;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p1_odt;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p1_reset_n;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p1_act_n;
-(*mark_debug="true"*)wire   [31:0] main_a7ddrphy_dfi_p1_wrdata;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p1_wrdata_en;
-(*mark_debug="true"*)wire    [3:0] main_a7ddrphy_dfi_p1_wrdata_mask;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p1_rddata_en;
-(*mark_debug="true"*)reg    [31:0] main_a7ddrphy_dfi_p1_rddata = 32'd0;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p1_rddata_valid;
-(*mark_debug="true"*)wire   [13:0] main_a7ddrphy_dfi_p2_address;
-(*mark_debug="true"*)wire    [2:0] main_a7ddrphy_dfi_p2_bank;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p2_cas_n;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p2_cs_n;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p2_ras_n;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p2_we_n;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p2_cke;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p2_odt;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p2_reset_n;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p2_act_n;
-(*mark_debug="true"*)wire   [31:0] main_a7ddrphy_dfi_p2_wrdata;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p2_wrdata_en;
-(*mark_debug="true"*)wire    [3:0] main_a7ddrphy_dfi_p2_wrdata_mask;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p2_rddata_en;
-(*mark_debug="true"*)reg    [31:0] main_a7ddrphy_dfi_p2_rddata = 32'd0;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p2_rddata_valid;
-(*mark_debug="true"*)wire   [13:0] main_a7ddrphy_dfi_p3_address;
-(*mark_debug="true"*)wire    [2:0] main_a7ddrphy_dfi_p3_bank;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p3_cas_n;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p3_cs_n;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p3_ras_n;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p3_we_n;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p3_cke;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p3_odt;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p3_reset_n;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p3_act_n;
-(*mark_debug="true"*)wire   [31:0] main_a7ddrphy_dfi_p3_wrdata;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p3_wrdata_en;
-(*mark_debug="true"*)wire    [3:0] main_a7ddrphy_dfi_p3_wrdata_mask;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p3_rddata_en;
-(*mark_debug="true"*)reg    [31:0] main_a7ddrphy_dfi_p3_rddata = 32'd0;
-(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p3_rddata_valid;
+wire   [13:0] main_a7ddrphy_dfi_p0_address;
+wire    [2:0] main_a7ddrphy_dfi_p0_bank;
+wire          main_a7ddrphy_dfi_p0_cas_n;
+wire          main_a7ddrphy_dfi_p0_cs_n;
+wire          main_a7ddrphy_dfi_p0_ras_n;
+wire          main_a7ddrphy_dfi_p0_we_n;
+wire          main_a7ddrphy_dfi_p0_cke;
+wire          main_a7ddrphy_dfi_p0_odt;
+wire          main_a7ddrphy_dfi_p0_reset_n;
+wire          main_a7ddrphy_dfi_p0_act_n;
+wire   [31:0] main_a7ddrphy_dfi_p0_wrdata;
+wire          main_a7ddrphy_dfi_p0_wrdata_en;
+wire    [3:0] main_a7ddrphy_dfi_p0_wrdata_mask;
+wire          main_a7ddrphy_dfi_p0_rddata_en;
+reg    [31:0] main_a7ddrphy_dfi_p0_rddata = 32'd0;
+wire          main_a7ddrphy_dfi_p0_rddata_valid;
+wire   [13:0] main_a7ddrphy_dfi_p1_address;
+wire    [2:0] main_a7ddrphy_dfi_p1_bank;
+wire          main_a7ddrphy_dfi_p1_cas_n;
+wire          main_a7ddrphy_dfi_p1_cs_n;
+wire          main_a7ddrphy_dfi_p1_ras_n;
+wire          main_a7ddrphy_dfi_p1_we_n;
+wire          main_a7ddrphy_dfi_p1_cke;
+wire          main_a7ddrphy_dfi_p1_odt;
+wire          main_a7ddrphy_dfi_p1_reset_n;
+wire          main_a7ddrphy_dfi_p1_act_n;
+wire   [31:0] main_a7ddrphy_dfi_p1_wrdata;
+wire          main_a7ddrphy_dfi_p1_wrdata_en;
+wire    [3:0] main_a7ddrphy_dfi_p1_wrdata_mask;
+wire          main_a7ddrphy_dfi_p1_rddata_en;
+reg    [31:0] main_a7ddrphy_dfi_p1_rddata = 32'd0;
+wire          main_a7ddrphy_dfi_p1_rddata_valid;
+wire   [13:0] main_a7ddrphy_dfi_p2_address;
+wire    [2:0] main_a7ddrphy_dfi_p2_bank;
+wire          main_a7ddrphy_dfi_p2_cas_n;
+wire          main_a7ddrphy_dfi_p2_cs_n;
+wire          main_a7ddrphy_dfi_p2_ras_n;
+wire          main_a7ddrphy_dfi_p2_we_n;
+wire          main_a7ddrphy_dfi_p2_cke;
+wire          main_a7ddrphy_dfi_p2_odt;
+wire          main_a7ddrphy_dfi_p2_reset_n;
+wire          main_a7ddrphy_dfi_p2_act_n;
+wire   [31:0] main_a7ddrphy_dfi_p2_wrdata;
+wire          main_a7ddrphy_dfi_p2_wrdata_en;
+wire    [3:0] main_a7ddrphy_dfi_p2_wrdata_mask;
+wire          main_a7ddrphy_dfi_p2_rddata_en;
+reg    [31:0] main_a7ddrphy_dfi_p2_rddata = 32'd0;
+wire          main_a7ddrphy_dfi_p2_rddata_valid;
+wire   [13:0] main_a7ddrphy_dfi_p3_address;
+wire    [2:0] main_a7ddrphy_dfi_p3_bank;
+wire          main_a7ddrphy_dfi_p3_cas_n;
+wire          main_a7ddrphy_dfi_p3_cs_n;
+wire          main_a7ddrphy_dfi_p3_ras_n;
+wire          main_a7ddrphy_dfi_p3_we_n;
+wire          main_a7ddrphy_dfi_p3_cke;
+wire          main_a7ddrphy_dfi_p3_odt;
+wire          main_a7ddrphy_dfi_p3_reset_n;
+wire          main_a7ddrphy_dfi_p3_act_n;
+wire   [31:0] main_a7ddrphy_dfi_p3_wrdata;
+wire          main_a7ddrphy_dfi_p3_wrdata_en;
+wire    [3:0] main_a7ddrphy_dfi_p3_wrdata_mask;
+wire          main_a7ddrphy_dfi_p3_rddata_en;
+reg    [31:0] main_a7ddrphy_dfi_p3_rddata = 32'd0;
+wire          main_a7ddrphy_dfi_p3_rddata_valid;
 wire          main_a7ddrphy_sd_clk_se_nodelay;
 wire    [2:0] main_a7ddrphy_pads_ba;
 reg           main_a7ddrphy_dqs_oe = 1'd0;
@@ -2586,8 +2590,11 @@ assign eth_clk = main_crg_clkout_buf1;
 assign sys4x_clk = main_crg_clkout_buf2;
 assign sys4x_dqs_clk = main_crg_clkout_buf3;
 assign idelay_clk = main_crg_clkout_buf4;
+assign sys4x_iserdes_clk = main_crg_clkout_buf5;
 `ifdef HME
-assign sys2x_clk = main_crg_clkout_buf5;//HME
+assign sys2x_clk = main_crg_clkout_buf6;//HME
+`else
+
 `endif
 assign builder_shared_adr = builder_rhs_array_muxed0;
 assign builder_shared_dat_w = builder_rhs_array_muxed1;
@@ -11196,6 +11203,11 @@ BUFG BUFG_4(
 	.O(main_crg_clkout_buf4)
 );
 
+BUFG BUFG_5(
+	.I(main_crg_clkout5),
+	.O(main_crg_clkout_buf5)
+);
+
 IDELAYCTRL IDELAYCTRL(
 	.REFCLK(idelay_clk),
 	.RST(main_crg_ic_reset)
@@ -11206,6 +11218,7 @@ assign main_crg_clkout_buf1 = main_crg_clkout1;
 assign main_crg_clkout_buf2 = main_crg_clkout2;
 assign main_crg_clkout_buf3 = main_crg_clkout3;
 assign main_crg_clkout_buf5 = main_crg_clkout5;
+assign main_crg_clkout_buf6 = main_crg_clkout6;
 `endif
 
 //------------------------------------------------------------------------------
@@ -12534,8 +12547,8 @@ ISERDESE2 #(
 ) ISERDESE2 (
 	.BITSLIP(1'd0),
 	.CE1(1'd1),
-	.CLK(sys4x_clk),
-	.CLKB((~sys4x_clk)),
+	.CLK(sys4x_iserdes_clk),
+	.CLKB((~sys4x_iserdes_clk)),
 	.CLKDIV(sys_clk),
 	.DDLY(main_a7ddrphy_dq_i_delayed0),
 	.RST((sys_rst | main_a7ddrphy_rst_storage)),
@@ -12638,8 +12651,8 @@ ISERDESE2 #(
 ) ISERDESE2_1 (
 	.BITSLIP(1'd0),
 	.CE1(1'd1),
-	.CLK(sys4x_clk),
-	.CLKB((~sys4x_clk)),
+	.CLK(sys4x_iserdes_clk),
+	.CLKB((~sys4x_iserdes_clk)),
 	.CLKDIV(sys_clk),
 	.DDLY(main_a7ddrphy_dq_i_delayed1),
 	.RST((sys_rst | main_a7ddrphy_rst_storage)),
@@ -12719,8 +12732,8 @@ ISERDESE2 #(
 ) ISERDESE2_2 (
 	.BITSLIP(1'd0),
 	.CE1(1'd1),
-	.CLK(sys4x_clk),
-	.CLKB((~sys4x_clk)),
+	.CLK(sys4x_iserdes_clk),
+	.CLKB((~sys4x_iserdes_clk)),
 	.CLKDIV(sys_clk),
 	.DDLY(main_a7ddrphy_dq_i_delayed2),
 	.RST((sys_rst | main_a7ddrphy_rst_storage)),
@@ -12821,8 +12834,8 @@ ISERDESE2 #(
 ) ISERDESE2_3 (
 	.BITSLIP(1'd0),
 	.CE1(1'd1),
-	.CLK(sys4x_clk),
-	.CLKB((~sys4x_clk)),
+	.CLK(sys4x_iserdes_clk),
+	.CLKB((~sys4x_iserdes_clk)),
 	.CLKDIV(sys_clk),
 	.DDLY(main_a7ddrphy_dq_i_delayed3),
 	.RST((sys_rst | main_a7ddrphy_rst_storage)),
@@ -12923,8 +12936,8 @@ ISERDESE2 #(
 ) ISERDESE2_4 (
 	.BITSLIP(1'd0),
 	.CE1(1'd1),
-	.CLK(sys4x_clk),
-	.CLKB((~sys4x_clk)),
+	.CLK(sys4x_iserdes_clk),
+	.CLKB((~sys4x_iserdes_clk)),
 	.CLKDIV(sys_clk),
 	.DDLY(main_a7ddrphy_dq_i_delayed4),
 	.RST((sys_rst | main_a7ddrphy_rst_storage)),
@@ -13025,8 +13038,8 @@ ISERDESE2 #(
 ) ISERDESE2_5 (
 	.BITSLIP(1'd0),
 	.CE1(1'd1),
-	.CLK(sys4x_clk),
-	.CLKB((~sys4x_clk)),
+	.CLK(sys4x_iserdes_clk),
+	.CLKB((~sys4x_iserdes_clk)),
 	.CLKDIV(sys_clk),
 	.DDLY(main_a7ddrphy_dq_i_delayed5),
 	.RST((sys_rst | main_a7ddrphy_rst_storage)),
@@ -13105,8 +13118,8 @@ ISERDESE2 #(
 ) ISERDESE2_6 (
 	.BITSLIP(1'd0),
 	.CE1(1'd1),
-	.CLK(sys4x_clk),
-	.CLKB((~sys4x_clk)),
+	.CLK(sys4x_iserdes_clk),
+	.CLKB((~sys4x_iserdes_clk)),
 	.CLKDIV(sys_clk),
 	.DDLY(main_a7ddrphy_dq_i_delayed6),
 	.RST((sys_rst | main_a7ddrphy_rst_storage)),
@@ -13185,8 +13198,8 @@ ISERDESE2 #(
 ) ISERDESE2_7 (
 	.BITSLIP(1'd0),
 	.CE1(1'd1),
-	.CLK(sys4x_clk),
-	.CLKB((~sys4x_clk)),
+	.CLK(sys4x_iserdes_clk),
+	.CLKB((~sys4x_iserdes_clk)),
 	.CLKDIV(sys_clk),
 	.DDLY(main_a7ddrphy_dq_i_delayed7),
 	.RST((sys_rst | main_a7ddrphy_rst_storage)),
@@ -13265,8 +13278,8 @@ ISERDESE2 #(
 ) ISERDESE2_8 (
 	.BITSLIP(1'd0),
 	.CE1(1'd1),
-	.CLK(sys4x_clk),
-	.CLKB((~sys4x_clk)),
+	.CLK(sys4x_iserdes_clk),
+	.CLKB((~sys4x_iserdes_clk)),
 	.CLKDIV(sys_clk),
 	.DDLY(main_a7ddrphy_dq_i_delayed8),
 	.RST((sys_rst | main_a7ddrphy_rst_storage)),
@@ -13345,8 +13358,8 @@ ISERDESE2 #(
 ) ISERDESE2_9 (
 	.BITSLIP(1'd0),
 	.CE1(1'd1),
-	.CLK(sys4x_clk),
-	.CLKB((~sys4x_clk)),
+	.CLK(sys4x_iserdes_clk),
+	.CLKB((~sys4x_iserdes_clk)),
 	.CLKDIV(sys_clk),
 	.DDLY(main_a7ddrphy_dq_i_delayed9),
 	.RST((sys_rst | main_a7ddrphy_rst_storage)),
@@ -13447,8 +13460,8 @@ ISERDESE2 #(
 ) ISERDESE2_10 (
 	.BITSLIP(1'd0),
 	.CE1(1'd1),
-	.CLK(sys4x_clk),
-	.CLKB((~sys4x_clk)),
+	.CLK(sys4x_iserdes_clk),
+	.CLKB((~sys4x_iserdes_clk)),
 	.CLKDIV(sys_clk),
 	.DDLY(main_a7ddrphy_dq_i_delayed10),
 	.RST((sys_rst | main_a7ddrphy_rst_storage)),
@@ -13549,8 +13562,8 @@ ISERDESE2 #(
 ) ISERDESE2_11 (
 	.BITSLIP(1'd0),
 	.CE1(1'd1),
-	.CLK(sys4x_clk),
-	.CLKB((~sys4x_clk)),
+	.CLK(sys4x_iserdes_clk),
+	.CLKB((~sys4x_iserdes_clk)),
 	.CLKDIV(sys_clk),
 	.DDLY(main_a7ddrphy_dq_i_delayed11),
 	.RST((sys_rst | main_a7ddrphy_rst_storage)),
@@ -13651,8 +13664,8 @@ ISERDESE2 #(
 ) ISERDESE2_12 (
 	.BITSLIP(1'd0),
 	.CE1(1'd1),
-	.CLK(sys4x_clk),
-	.CLKB((~sys4x_clk)),
+	.CLK(sys4x_iserdes_clk),
+	.CLKB((~sys4x_iserdes_clk)),
 	.CLKDIV(sys_clk),
 	.DDLY(main_a7ddrphy_dq_i_delayed12),
 	.RST((sys_rst | main_a7ddrphy_rst_storage)),
@@ -13731,8 +13744,8 @@ ISERDESE2 #(
 ) ISERDESE2_13 (
 	.BITSLIP(1'd0),
 	.CE1(1'd1),
-	.CLK(sys4x_clk),
-	.CLKB((~sys4x_clk)),
+	.CLK(sys4x_iserdes_clk),
+	.CLKB((~sys4x_iserdes_clk)),
 	.CLKDIV(sys_clk),
 	.DDLY(main_a7ddrphy_dq_i_delayed13),
 	.RST((sys_rst | main_a7ddrphy_rst_storage)),
@@ -13812,8 +13825,8 @@ ISERDESE2 #(
 ) ISERDESE2_14 (
 	.BITSLIP(1'd0),
 	.CE1(1'd1),
-	.CLK(sys4x_clk),
-	.CLKB((~sys4x_clk)),
+	.CLK(sys4x_iserdes_clk),
+	.CLKB((~sys4x_iserdes_clk)),
 	.CLKDIV(sys_clk),
 	.DDLY(main_a7ddrphy_dq_i_delayed14),
 	.RST((sys_rst | main_a7ddrphy_rst_storage)),
@@ -13892,8 +13905,8 @@ ISERDESE2 #(
 ) ISERDESE2_15 (
 	.BITSLIP(1'd0),
 	.CE1(1'd1),
-	.CLK(sys4x_clk),
-	.CLKB((~sys4x_clk)),
+	.CLK(sys4x_iserdes_clk),
+	.CLKB((~sys4x_iserdes_clk)),
 	.CLKDIV(sys_clk),
 	.DDLY(main_a7ddrphy_dq_i_delayed15),
 	.RST((sys_rst | main_a7ddrphy_rst_storage)),
@@ -14271,6 +14284,12 @@ PLLE2_ADV #(
 	.CLKOUT4_DIVIDE(4'd8),
 	.CLKOUT4_PHASE(1'd0),
 	.DIVCLK_DIVIDE(1'd1),
+	
+	//.CLKOUT5_DIVIDE(3'd4),//400mhz
+	.CLKOUT5_DIVIDE(4'd10),//160mhz
+	//.CLKOUT5_DIVIDE(4'd8),//200mhz
+	.CLKOUT5_PHASE(9'd270),
+	
 	.REF_JITTER1(0.01),
 	.STARTUP_WAIT("FALSE")
 ) PLLE2_ADV (
@@ -14284,6 +14303,7 @@ PLLE2_ADV #(
 	.CLKOUT2(main_crg_clkout2),
 	.CLKOUT3(main_crg_clkout3),
 	.CLKOUT4(main_crg_clkout4),
+	.CLKOUT5(main_crg_clkout5),
 	.LOCKED(main_crg_locked)
 );
 `else
@@ -14298,6 +14318,7 @@ PLLE2_ADV_HME PLLE2_ADV (
 	.CLKOUT2(main_crg_clkout2),
 	.CLKOUT3(main_crg_clkout3),
 	.CLKOUT4(main_crg_clkout5),
+	.CLKOUT5(main_crg_clkout6),
 	.LOCKED(main_crg_locked)
 );
 `endif
