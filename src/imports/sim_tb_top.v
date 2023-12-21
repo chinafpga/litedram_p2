@@ -72,7 +72,7 @@
 // Revision History :
 //*****************************************************************************
 
-`timescale 1ps/1ps
+`timescale 1ns/1ps
 
 module sim_tb_top;
 
@@ -130,7 +130,7 @@ module sim_tb_top;
    // The following parameters are multiplier and divisor factors for PLLE2.
    // Based on the selected design frequency these parameters vary.
    //***************************************************************************
-   parameter CLKIN_PERIOD          = 10000;  //Ĭ��5000
+   parameter CLKIN_PERIOD          = 10;  //Ĭ��5000
                                      // Input Clock Period
 
 
@@ -159,12 +159,12 @@ module sim_tb_top;
    //***************************************************************************
    // Referece clock frequency parameters
    //***************************************************************************
-   parameter REFCLK_FREQ           = 100000.0; //Ĭ��200
+   parameter REFCLK_FREQ           = 100.0; //Ĭ��200
                                      // IODELAYCTRL reference clock frequency
    //***************************************************************************
    // System clock frequency parameters
    //***************************************************************************
-   parameter tCK                   = 2500;
+   parameter tCK                   = 2.5;
                                      // memory tCK paramter.
                      // # = Clock Period in pS.
    parameter nCK_PER_CLK           = 4;
@@ -224,8 +224,8 @@ module sim_tb_top;
   localparam ERR_INSERT = (ECC_TEST == "ON") ? "OFF" : ECC ;
   
 
-  localparam real REFCLK_PERIOD = (1000000.0/(2*REFCLK_FREQ));
-  localparam RESET_PERIOD = 2000000; //in nSec  2000_00
+  localparam real REFCLK_PERIOD = (1000.0/(2*REFCLK_FREQ));
+  localparam RESET_PERIOD = 2000; //in nSec  2000_00
   localparam real SYSCLK_PERIOD = tCK;
     
     
@@ -312,12 +312,12 @@ module sim_tb_top;
   always
     sys_clk_i = #(CLKIN_PERIOD/2.0) ~sys_clk_i;
 
-
+/*
   initial
     clk_ref_i = 1'b0;
   always
     clk_ref_i = #REFCLK_PERIOD ~clk_ref_i;
-
+*/
 
 
 

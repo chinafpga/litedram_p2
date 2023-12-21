@@ -83,8 +83,10 @@ wire          main_crg_clkout3;
 wire          main_crg_clkout_buf3;
 wire          main_crg_clkout4;
 wire          main_crg_clkout_buf4;
+`ifdef HME
 wire          main_crg_clkout5;//HME
 wire          main_crg_clkout_buf5;
+`endif
 reg     [3:0] main_crg_reset_counter = 4'd15;
 reg           main_crg_ic_reset = 1'd1;
 reg           main_basesoc_soc_rst = 1'd0;
@@ -371,70 +373,70 @@ reg     [1:0] main_a7ddrphy_rdphase_storage = 2'd2;
 reg           main_a7ddrphy_rdphase_re = 1'd0;
 reg     [1:0] main_a7ddrphy_wrphase_storage = 2'd3;
 reg           main_a7ddrphy_wrphase_re = 1'd0;
-wire   [13:0] main_a7ddrphy_dfi_p0_address;
-wire    [2:0] main_a7ddrphy_dfi_p0_bank;
-wire          main_a7ddrphy_dfi_p0_cas_n;
-wire          main_a7ddrphy_dfi_p0_cs_n;
-wire          main_a7ddrphy_dfi_p0_ras_n;
-wire          main_a7ddrphy_dfi_p0_we_n;
-wire          main_a7ddrphy_dfi_p0_cke;
-wire          main_a7ddrphy_dfi_p0_odt;
-wire          main_a7ddrphy_dfi_p0_reset_n;
-wire          main_a7ddrphy_dfi_p0_act_n;
-wire   [31:0] main_a7ddrphy_dfi_p0_wrdata;
-wire          main_a7ddrphy_dfi_p0_wrdata_en;
-wire    [3:0] main_a7ddrphy_dfi_p0_wrdata_mask;
-wire          main_a7ddrphy_dfi_p0_rddata_en;
-reg    [31:0] main_a7ddrphy_dfi_p0_rddata = 32'd0;
-wire          main_a7ddrphy_dfi_p0_rddata_valid;
-wire   [13:0] main_a7ddrphy_dfi_p1_address;
-wire    [2:0] main_a7ddrphy_dfi_p1_bank;
-wire          main_a7ddrphy_dfi_p1_cas_n;
-wire          main_a7ddrphy_dfi_p1_cs_n;
-wire          main_a7ddrphy_dfi_p1_ras_n;
-wire          main_a7ddrphy_dfi_p1_we_n;
-wire          main_a7ddrphy_dfi_p1_cke;
-wire          main_a7ddrphy_dfi_p1_odt;
-wire          main_a7ddrphy_dfi_p1_reset_n;
-wire          main_a7ddrphy_dfi_p1_act_n;
-wire   [31:0] main_a7ddrphy_dfi_p1_wrdata;
-wire          main_a7ddrphy_dfi_p1_wrdata_en;
-wire    [3:0] main_a7ddrphy_dfi_p1_wrdata_mask;
-wire          main_a7ddrphy_dfi_p1_rddata_en;
-reg    [31:0] main_a7ddrphy_dfi_p1_rddata = 32'd0;
-wire          main_a7ddrphy_dfi_p1_rddata_valid;
-wire   [13:0] main_a7ddrphy_dfi_p2_address;
-wire    [2:0] main_a7ddrphy_dfi_p2_bank;
-wire          main_a7ddrphy_dfi_p2_cas_n;
-wire          main_a7ddrphy_dfi_p2_cs_n;
-wire          main_a7ddrphy_dfi_p2_ras_n;
-wire          main_a7ddrphy_dfi_p2_we_n;
-wire          main_a7ddrphy_dfi_p2_cke;
-wire          main_a7ddrphy_dfi_p2_odt;
-wire          main_a7ddrphy_dfi_p2_reset_n;
-wire          main_a7ddrphy_dfi_p2_act_n;
-wire   [31:0] main_a7ddrphy_dfi_p2_wrdata;
-wire          main_a7ddrphy_dfi_p2_wrdata_en;
-wire    [3:0] main_a7ddrphy_dfi_p2_wrdata_mask;
-wire          main_a7ddrphy_dfi_p2_rddata_en;
-reg    [31:0] main_a7ddrphy_dfi_p2_rddata = 32'd0;
-wire          main_a7ddrphy_dfi_p2_rddata_valid;
-wire   [13:0] main_a7ddrphy_dfi_p3_address;
-wire    [2:0] main_a7ddrphy_dfi_p3_bank;
-wire          main_a7ddrphy_dfi_p3_cas_n;
-wire          main_a7ddrphy_dfi_p3_cs_n;
-wire          main_a7ddrphy_dfi_p3_ras_n;
-wire          main_a7ddrphy_dfi_p3_we_n;
-wire          main_a7ddrphy_dfi_p3_cke;
-wire          main_a7ddrphy_dfi_p3_odt;
-wire          main_a7ddrphy_dfi_p3_reset_n;
-wire          main_a7ddrphy_dfi_p3_act_n;
-wire   [31:0] main_a7ddrphy_dfi_p3_wrdata;
-wire          main_a7ddrphy_dfi_p3_wrdata_en;
-wire    [3:0] main_a7ddrphy_dfi_p3_wrdata_mask;
-wire          main_a7ddrphy_dfi_p3_rddata_en;
-reg    [31:0] main_a7ddrphy_dfi_p3_rddata = 32'd0;
-wire          main_a7ddrphy_dfi_p3_rddata_valid;
+(*mark_debug="true"*)wire   [13:0] main_a7ddrphy_dfi_p0_address;
+(*mark_debug="true"*)wire    [2:0] main_a7ddrphy_dfi_p0_bank;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p0_cas_n;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p0_cs_n;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p0_ras_n;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p0_we_n;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p0_cke;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p0_odt;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p0_reset_n;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p0_act_n;
+(*mark_debug="true"*)wire   [31:0] main_a7ddrphy_dfi_p0_wrdata;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p0_wrdata_en;
+(*mark_debug="true"*)wire    [3:0] main_a7ddrphy_dfi_p0_wrdata_mask;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p0_rddata_en;
+(*mark_debug="true"*)reg    [31:0] main_a7ddrphy_dfi_p0_rddata = 32'd0;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p0_rddata_valid;
+(*mark_debug="true"*)wire   [13:0] main_a7ddrphy_dfi_p1_address;
+(*mark_debug="true"*)wire    [2:0] main_a7ddrphy_dfi_p1_bank;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p1_cas_n;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p1_cs_n;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p1_ras_n;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p1_we_n;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p1_cke;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p1_odt;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p1_reset_n;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p1_act_n;
+(*mark_debug="true"*)wire   [31:0] main_a7ddrphy_dfi_p1_wrdata;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p1_wrdata_en;
+(*mark_debug="true"*)wire    [3:0] main_a7ddrphy_dfi_p1_wrdata_mask;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p1_rddata_en;
+(*mark_debug="true"*)reg    [31:0] main_a7ddrphy_dfi_p1_rddata = 32'd0;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p1_rddata_valid;
+(*mark_debug="true"*)wire   [13:0] main_a7ddrphy_dfi_p2_address;
+(*mark_debug="true"*)wire    [2:0] main_a7ddrphy_dfi_p2_bank;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p2_cas_n;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p2_cs_n;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p2_ras_n;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p2_we_n;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p2_cke;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p2_odt;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p2_reset_n;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p2_act_n;
+(*mark_debug="true"*)wire   [31:0] main_a7ddrphy_dfi_p2_wrdata;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p2_wrdata_en;
+(*mark_debug="true"*)wire    [3:0] main_a7ddrphy_dfi_p2_wrdata_mask;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p2_rddata_en;
+(*mark_debug="true"*)reg    [31:0] main_a7ddrphy_dfi_p2_rddata = 32'd0;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p2_rddata_valid;
+(*mark_debug="true"*)wire   [13:0] main_a7ddrphy_dfi_p3_address;
+(*mark_debug="true"*)wire    [2:0] main_a7ddrphy_dfi_p3_bank;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p3_cas_n;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p3_cs_n;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p3_ras_n;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p3_we_n;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p3_cke;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p3_odt;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p3_reset_n;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p3_act_n;
+(*mark_debug="true"*)wire   [31:0] main_a7ddrphy_dfi_p3_wrdata;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p3_wrdata_en;
+(*mark_debug="true"*)wire    [3:0] main_a7ddrphy_dfi_p3_wrdata_mask;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p3_rddata_en;
+(*mark_debug="true"*)reg    [31:0] main_a7ddrphy_dfi_p3_rddata = 32'd0;
+(*mark_debug="true"*)wire          main_a7ddrphy_dfi_p3_rddata_valid;
 wire          main_a7ddrphy_sd_clk_se_nodelay;
 wire    [2:0] main_a7ddrphy_pads_ba;
 reg           main_a7ddrphy_dqs_oe = 1'd0;
@@ -2584,7 +2586,9 @@ assign eth_clk = main_crg_clkout_buf1;
 assign sys4x_clk = main_crg_clkout_buf2;
 assign sys4x_dqs_clk = main_crg_clkout_buf3;
 assign idelay_clk = main_crg_clkout_buf4;
+`ifdef HME
 assign sys2x_clk = main_crg_clkout_buf5;//HME
+`endif
 assign builder_shared_adr = builder_rhs_array_muxed0;
 assign builder_shared_dat_w = builder_rhs_array_muxed1;
 assign builder_shared_sel = builder_rhs_array_muxed2;
@@ -4099,6 +4103,20 @@ always @(*) begin
         end
     endcase
 end
+
+reg [31:0] main_a7ddrphy_dfi_p0_rddata_d1 = 32'd0;
+reg [31:0] main_a7ddrphy_dfi_p1_rddata_d1 = 32'd0;
+reg [31:0] main_a7ddrphy_dfi_p2_rddata_d1 = 32'd0;
+reg [31:0] main_a7ddrphy_dfi_p3_rddata_d1 = 32'd0;
+always @(posedge sys_clk) begin
+//always @(*) begin
+	main_a7ddrphy_dfi_p0_rddata_d1 <= main_a7ddrphy_dfi_p0_rddata;
+	main_a7ddrphy_dfi_p1_rddata_d1 <= main_a7ddrphy_dfi_p1_rddata;
+	main_a7ddrphy_dfi_p2_rddata_d1 <= main_a7ddrphy_dfi_p2_rddata;
+	main_a7ddrphy_dfi_p3_rddata_d1 <= main_a7ddrphy_dfi_p3_rddata;
+end
+
+
 assign main_a7ddrphy_dfi_p0_address = main_basesoc_sdram_master_p0_address;
 assign main_a7ddrphy_dfi_p0_bank = main_basesoc_sdram_master_p0_bank;
 assign main_a7ddrphy_dfi_p0_cas_n = main_basesoc_sdram_master_p0_cas_n;
@@ -4113,7 +4131,7 @@ assign main_a7ddrphy_dfi_p0_wrdata = main_basesoc_sdram_master_p0_wrdata;
 assign main_a7ddrphy_dfi_p0_wrdata_en = main_basesoc_sdram_master_p0_wrdata_en;
 assign main_a7ddrphy_dfi_p0_wrdata_mask = main_basesoc_sdram_master_p0_wrdata_mask;
 assign main_a7ddrphy_dfi_p0_rddata_en = main_basesoc_sdram_master_p0_rddata_en;
-assign main_basesoc_sdram_master_p0_rddata = main_a7ddrphy_dfi_p0_rddata;
+assign main_basesoc_sdram_master_p0_rddata = main_a7ddrphy_dfi_p0_rddata_d1;
 assign main_basesoc_sdram_master_p0_rddata_valid = main_a7ddrphy_dfi_p0_rddata_valid;
 assign main_a7ddrphy_dfi_p1_address = main_basesoc_sdram_master_p1_address;
 assign main_a7ddrphy_dfi_p1_bank = main_basesoc_sdram_master_p1_bank;
@@ -4129,7 +4147,7 @@ assign main_a7ddrphy_dfi_p1_wrdata = main_basesoc_sdram_master_p1_wrdata;
 assign main_a7ddrphy_dfi_p1_wrdata_en = main_basesoc_sdram_master_p1_wrdata_en;
 assign main_a7ddrphy_dfi_p1_wrdata_mask = main_basesoc_sdram_master_p1_wrdata_mask;
 assign main_a7ddrphy_dfi_p1_rddata_en = main_basesoc_sdram_master_p1_rddata_en;
-assign main_basesoc_sdram_master_p1_rddata = main_a7ddrphy_dfi_p1_rddata;
+assign main_basesoc_sdram_master_p1_rddata = main_a7ddrphy_dfi_p1_rddata_d1;
 assign main_basesoc_sdram_master_p1_rddata_valid = main_a7ddrphy_dfi_p1_rddata_valid;
 assign main_a7ddrphy_dfi_p2_address = main_basesoc_sdram_master_p2_address;
 assign main_a7ddrphy_dfi_p2_bank = main_basesoc_sdram_master_p2_bank;
@@ -4145,7 +4163,7 @@ assign main_a7ddrphy_dfi_p2_wrdata = main_basesoc_sdram_master_p2_wrdata;
 assign main_a7ddrphy_dfi_p2_wrdata_en = main_basesoc_sdram_master_p2_wrdata_en;
 assign main_a7ddrphy_dfi_p2_wrdata_mask = main_basesoc_sdram_master_p2_wrdata_mask;
 assign main_a7ddrphy_dfi_p2_rddata_en = main_basesoc_sdram_master_p2_rddata_en;
-assign main_basesoc_sdram_master_p2_rddata = main_a7ddrphy_dfi_p2_rddata;
+assign main_basesoc_sdram_master_p2_rddata = main_a7ddrphy_dfi_p2_rddata_d1;
 assign main_basesoc_sdram_master_p2_rddata_valid = main_a7ddrphy_dfi_p2_rddata_valid;
 assign main_a7ddrphy_dfi_p3_address = main_basesoc_sdram_master_p3_address;
 assign main_a7ddrphy_dfi_p3_bank = main_basesoc_sdram_master_p3_bank;
@@ -4161,7 +4179,7 @@ assign main_a7ddrphy_dfi_p3_wrdata = main_basesoc_sdram_master_p3_wrdata;
 assign main_a7ddrphy_dfi_p3_wrdata_en = main_basesoc_sdram_master_p3_wrdata_en;
 assign main_a7ddrphy_dfi_p3_wrdata_mask = main_basesoc_sdram_master_p3_wrdata_mask;
 assign main_a7ddrphy_dfi_p3_rddata_en = main_basesoc_sdram_master_p3_rddata_en;
-assign main_basesoc_sdram_master_p3_rddata = main_a7ddrphy_dfi_p3_rddata;
+assign main_basesoc_sdram_master_p3_rddata = main_a7ddrphy_dfi_p3_rddata_d1;
 assign main_basesoc_sdram_master_p3_rddata_valid = main_a7ddrphy_dfi_p3_rddata_valid;
 assign main_basesoc_sdram_slave_p0_address = main_basesoc_sdram_dfi_p0_address;
 assign main_basesoc_sdram_slave_p0_bank = main_basesoc_sdram_dfi_p0_bank;
@@ -11191,10 +11209,10 @@ assign main_crg_clkout_buf5 = main_crg_clkout5;
 `endif
 
 //------------------------------------------------------------------------------
-// Memory rom: 6294-words x 32-bit
+// Memory rom: 6364-words x 32-bit
 //------------------------------------------------------------------------------
 // Port 0 | Read: Sync  | Write: ---- | 
-reg [31:0] rom[0:6293];
+reg [31:0] rom[0:6363];
 initial begin
 	$readmemh("digilent_arty_rom.init", rom);
 end
@@ -11403,7 +11421,7 @@ OSERDESE2 #(
 	.OQ(ddram_reset_n)
 );
 `else
-sdrio_x1 OSERDESE2_1(
+/*sdrio_x1 OSERDESE2_1(
     .geclk_ol(sys4x_clk),
     .gsclk_ol(sys_clk),
     .geclk_il(),
@@ -11418,6 +11436,28 @@ sdrio_x1 OSERDESE2_1(
     .q_0(),
     .dq_0(ddram_reset_n) 
 );
+*/
+/*ddrio_x2 OSERDESE2_1( //P0 HPIO LVDS pair P: ddram_cs_n, N: NC
+    .geclk_ol(sys4x_clk),
+    .gsclk_ol(sys_clk),
+    .geclk_il(),
+    .gsclk_il(),
+    .align_rst_ol(sys_rst_pre),
+	.rst((sys_rst | main_a7ddrphy_rst_storage)),
+    .cken(io_cken),
+    .align_il(1'b0),
+    .align_ol(align_ol),
+    .phy_odt_ctrl_0(1'b0),
+    .phy_odt_ctrl_1(1'b0),
+    .t_0(1'b0),
+    .d_0({main_a7ddrphy_dfi_p3_reset_n,main_a7ddrphy_dfi_p3_reset_n,main_a7ddrphy_dfi_p2_reset_n,main_a7ddrphy_dfi_p2_reset_n,main_a7ddrphy_dfi_p1_reset_n,main_a7ddrphy_dfi_p1_reset_n,main_a7ddrphy_dfi_p0_reset_n,main_a7ddrphy_dfi_p0_reset_n}),
+    .q_0(),
+    .dq_0(ddram_reset_n),
+	.t_1(),
+    .d_1(),
+    .q_1(),
+    .dq_1() 
+);*/
 `endif
 
 `ifndef HME
@@ -11443,7 +11483,7 @@ OSERDESE2 #(
 	.OQ(ddram_cs_n)
 );
 `else
-sdrio_x1 OSERDESE2_2(
+/*sdrio_x1 OSERDESE2_2(
     .geclk_ol(sys4x_clk),
     .gsclk_ol(sys_clk),
     .geclk_il(),
@@ -11458,6 +11498,28 @@ sdrio_x1 OSERDESE2_2(
     .q_0(),
     .dq_0(ddram_cs_n) 
 );
+*/
+/*ddrio_x2 OSERDESE2_2( //P0 HPIO LVDS pair P: ddram_cs_n, N: NC
+    .geclk_ol(sys4x_clk),
+    .gsclk_ol(sys_clk),
+    .geclk_il(),
+    .gsclk_il(),
+    .align_rst_ol(sys_rst_pre),
+	.rst((sys_rst | main_a7ddrphy_rst_storage)),
+    .cken(io_cken),
+    .align_il(1'b0),
+    .align_ol(align_ol),
+    .phy_odt_ctrl_0(1'b0),
+    .phy_odt_ctrl_1(1'b0),
+    .t_0(1'b0),
+    .d_0({main_a7ddrphy_dfi_p3_cs_n,main_a7ddrphy_dfi_p3_cs_n,main_a7ddrphy_dfi_p2_cs_n,main_a7ddrphy_dfi_p2_cs_n,main_a7ddrphy_dfi_p1_cs_n,main_a7ddrphy_dfi_p1_cs_n,main_a7ddrphy_dfi_p0_cs_n,main_a7ddrphy_dfi_p0_cs_n}),
+    .q_0(),
+    .dq_0(ddram_cs_n),
+	.t_1(),
+    .d_1(),
+    .q_1(),
+    .dq_1() 
+);*/
 `endif
 
 `ifndef HME
@@ -12817,11 +12879,11 @@ ddrio_x2 OSERDESE2_32 ( //P0 HPIO LVDS pair P: ddram_dq[3], N: NC, ddram_reset_n
     .t_0({4{~main_a7ddrphy_dq_oe_delay_tappeddelayline_tappeddelayline1}}),
     .d_0(main_a7ddrphy_bitslip30[7:0]),
     .q_0({main_a7ddrphy_bitslip31[0],main_a7ddrphy_bitslip31[1],main_a7ddrphy_bitslip31[2],main_a7ddrphy_bitslip31[3],main_a7ddrphy_bitslip31[4],main_a7ddrphy_bitslip31[5],main_a7ddrphy_bitslip31[6],main_a7ddrphy_bitslip31[7]}),
-    .dq_0(ddram_dq[3])//,
-	//.t_1({4{1'b0}}),
-    //.d_1({main_a7ddrphy_dfi_p3_reset_n,main_a7ddrphy_dfi_p3_reset_n,main_a7ddrphy_dfi_p2_reset_n,main_a7ddrphy_dfi_p2_reset_n,main_a7ddrphy_dfi_p1_reset_n,main_a7ddrphy_dfi_p1_reset_n,main_a7ddrphy_dfi_p0_reset_n,main_a7ddrphy_dfi_p0_reset_n}),
-    //.q_1(),
-    //.dq_1(ddram_reset_n) 
+    .dq_0(ddram_dq[3]),
+	  .t_1({4{1'b0}}),
+    .d_1({main_a7ddrphy_dfi_p3_reset_n,main_a7ddrphy_dfi_p3_reset_n,main_a7ddrphy_dfi_p2_reset_n,main_a7ddrphy_dfi_p2_reset_n,main_a7ddrphy_dfi_p1_reset_n,main_a7ddrphy_dfi_p1_reset_n,main_a7ddrphy_dfi_p0_reset_n,main_a7ddrphy_dfi_p0_reset_n}),
+    .q_1(),
+    .dq_1(ddram_reset_n) 
 );
 `endif
 
@@ -13341,11 +13403,11 @@ ddrio_x2 OSERDESE2_38 ( //P0 HPIO LVDS pair P: ddram_dq[9], N: NC, ddram_cs_n fo
     .t_0({4{~main_a7ddrphy_dq_oe_delay_tappeddelayline_tappeddelayline1}}),
     .d_0(main_a7ddrphy_bitslip90[7:0]),
     .q_0({main_a7ddrphy_bitslip91[0],main_a7ddrphy_bitslip91[1],main_a7ddrphy_bitslip91[2],main_a7ddrphy_bitslip91[3],main_a7ddrphy_bitslip91[4],main_a7ddrphy_bitslip91[5],main_a7ddrphy_bitslip91[6],main_a7ddrphy_bitslip91[7]}),
-    .dq_0(ddram_dq[9])//,
-    //.t_1({4{1'b0}}),
-    //.d_1({main_a7ddrphy_dfi_p3_cs_n,main_a7ddrphy_dfi_p3_cs_n,main_a7ddrphy_dfi_p2_cs_n,main_a7ddrphy_dfi_p2_cs_n,main_a7ddrphy_dfi_p1_cs_n,main_a7ddrphy_dfi_p1_cs_n,main_a7ddrphy_dfi_p0_cs_n,main_a7ddrphy_dfi_p0_cs_n}),
-    //.q_1(),
-    //.dq_1(ddram_cs_n) 
+    .dq_0(ddram_dq[9]),
+    .t_1({4{1'b0}}),
+    .d_1({main_a7ddrphy_dfi_p3_cs_n,main_a7ddrphy_dfi_p3_cs_n,main_a7ddrphy_dfi_p2_cs_n,main_a7ddrphy_dfi_p2_cs_n,main_a7ddrphy_dfi_p1_cs_n,main_a7ddrphy_dfi_p1_cs_n,main_a7ddrphy_dfi_p0_cs_n,main_a7ddrphy_dfi_p0_cs_n}),
+    .q_1(),
+    .dq_1(ddram_cs_n) 
 );
 `endif
 
