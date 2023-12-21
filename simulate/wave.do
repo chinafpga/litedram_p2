@@ -4,7 +4,6 @@ add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/clk100
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/cpu_reset
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/eth_ref_clk
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/serial_tx
-add wave -noupdate -radix ascii /sim_tb_top/u_ip_top/ddr_inst/main_basesoc_tx_sink_payload_data
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/serial_rx
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/ddram_a
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/ddram_ba
@@ -328,6 +327,14 @@ add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_18/u_data_n/Iolg/dn_3
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_18/u_data_n/Iolg/dp_out
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_18/u_data_n/Iolg/pn_sel
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_18/u_data_n/Iolg/pn_sel_finv
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_18/u_data_ol_update_d0/CFG_RST_SEL_O
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_18/u_data_ol_update_d0/CFG_FCLK_SEL_S0_O
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_18/u_data_ol_update_d0/CFG_RST_INV_O
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_18/u_data_ol_update_d0/CFG_FCLK_SEL_S1_O
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_18/u_data_ol_update_d0/CFG_GSCLK_SEL_S0_O
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_18/u_data_ol_update_d0/CFG_GSCLK_SEL_S1_O
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_18/u_data_ol_update_d0/CFG_RST_SYN_O
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_18/u_data_ol_update_d0/CFG_FCLK_SR_O_EN
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_18/u_data_ol_update_d0/CFG_UP_SEL
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_18/u_data_ol_update_d0/CFG_GSCLK_UPO_EN
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_18/u_data_ol_update_d0/CFG_GECLK_UPO_EN
@@ -407,8 +414,8 @@ add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_2/ioc_cmos_inst0/Iolg
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_2/ioc_cmos_inst0/Iolg/pnsel
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_2/ioc_cmos_inst0/Iolg/ddro
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {1719906835 ps} 0} {{Cursor 2} {8847976416 ps} 0} {{Cursor 3} {724694 ps} 0}
-quietly wave cursor active 3
+WaveRestoreCursors {{Cursor 1} {1719906835 ps} 0} {{Cursor 2} {8847976416 ps} 0} {{Cursor 3} {1719882073 ps} 0}
+quietly wave cursor active 2
 configure wave -namecolwidth 528
 configure wave -valuecolwidth 100
 configure wave -justifyvalue left
@@ -423,4 +430,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {88391177 ps}
+WaveRestoreZoom {8847878577 ps} {8848323047 ps}

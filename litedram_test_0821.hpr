@@ -5,7 +5,7 @@
     <topModule>digilent_arty</topModule>
     <tbTopModule>sim_tb_top</tbTopModule>
     <tbTopDesignInstName>digilent_arty_inst</tbTopDesignInstName>
-    <ModelsimDoFileName>simulate/rtl_sim.do</ModelsimDoFileName>
+    <ModelsimDoFileName>simulate/post_pr_sim.do</ModelsimDoFileName>
     <MonitorSignal>Default|Default</MonitorSignal>
     <command-args toolName="bg">
         <argument name="cpr">LZ</argument>
@@ -27,10 +27,10 @@
         <file>$(PRJ_DIR)/src/ddrio_x2.v</file>
         <file>$(PRJ_DIR)/src/p0_src/ologic_aligner.v</file>
         <file>$(PRJ_DIR)/src/sdrio_x1.v</file>
-        <file>$(PRJ_DIR)/src/debugware_v2_1.v</file>
         <file isTestBench="1">$(PRJ_DIR)/src/imports/example_top.v</file>
         <file isTestBench="1">$(PRJ_DIR)/src/imports/sim_tb_top.v</file>
         <file isTestBench="1" type="N/A">$(PRJ_DIR)/src/imports/ddr3_model.sv</file>
         <file isTestBench="1">$(PRJ_DIR)/src/imports/wiredly.v</file>
+        <file>$(PRJ_DIR)/src/debugware_v2_1.v</file>
     </files>
 </AgateProject>
