@@ -27,6 +27,8 @@ add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/user_led0
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/user_led1
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/user_led2
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/user_led3
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/sys4x_dqs_clk
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/sys4x_iserdes_clk
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/sys4x_clk
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/sys_clk
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/main_a7ddrphy_dq_i_delayed0
@@ -174,7 +176,7 @@ add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/main_a7ddrphy_dfi_p2_cs_n
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/main_a7ddrphy_dfi_p1_cs_n
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/main_a7ddrphy_dfi_p0_cs_n
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {24713493888 ps} 0} {{Cursor 2} {35974544911 ps} 0} {{Cursor 3} {442128255 ps} 0}
+WaveRestoreCursors {{Cursor 1} {24713493888 ps} 0} {{Cursor 2} {35974544911 ps} 0} {{Cursor 3} {1198311761 ps} 0}
 quietly wave cursor active 3
 configure wave -namecolwidth 528
 configure wave -valuecolwidth 100
@@ -190,4 +192,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {1485706793 ps}
+WaveRestoreZoom {1198267159 ps} {1198356363 ps}

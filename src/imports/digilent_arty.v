@@ -14325,8 +14325,8 @@ PLLE2_ADV_HME PLLE2_ADV (
 	.CLKOUT1(main_crg_clkout1),
 	.CLKOUT2(main_crg_clkout2),
 	.CLKOUT3(main_crg_clkout3),
-	.CLKOUT4(main_crg_clkout5),
-	.CLKOUT5(main_crg_clkout6),
+	.CLKOUT4(main_crg_clkout6),
+	.CLKOUT5(main_crg_clkout5),
 	.LOCKED(main_crg_locked)
 );
 `endif
