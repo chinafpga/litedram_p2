@@ -13,4 +13,13 @@ P2 RTL simulation flow
    litex/soc/software/libbase/memtest.c
    litex/soc/software/liblitedram/sdram.c
 
-   Above 3 change files is in software 
+   Above 3 change files is in software. litex git version is :
+   commit 57bffbbb926b95056b48fa2fe237a795e6129d82 (origin/master, origin/HEAD, master)
+   Merge: 54192651 6ad14ef6
+   Author: enjoy-digital <florent@enjoy-digital.fr>
+   Date:   Mon May 22 19:22:56 2023 +0200
+
+   Merge pull request #1697 from hansfbaier/master
+    
+   AvalonMM/AvalonMM2Wishbone: fix read bursts (readdatavalid one cycle too short)
+
