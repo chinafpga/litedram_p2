@@ -659,9 +659,6 @@ reg           main_a7ddrphy_rddata_en_tappeddelayline4 = 1'd0;
 reg           main_a7ddrphy_rddata_en_tappeddelayline5 = 1'd0;
 reg           main_a7ddrphy_rddata_en_tappeddelayline6 = 1'd0;
 reg           main_a7ddrphy_rddata_en_tappeddelayline7 = 1'd0;
-`ifdef HME
-reg           main_a7ddrphy_rddata_en_tappeddelayline8 = 1'd0;// for HME P2
-`endif
 reg           main_a7ddrphy_wrdata_en_tappeddelayline0 = 1'd0;
 reg           main_a7ddrphy_wrdata_en_tappeddelayline1 = 1'd0;
 reg           main_a7ddrphy_wrdata_en_tappeddelayline2 = 1'd0;
@@ -3028,17 +3025,12 @@ always @(*) begin
     main_a7ddrphy_dfi_p3_rddata[15] <= main_a7ddrphy_bitslip152[6];
     main_a7ddrphy_dfi_p3_rddata[31] <= main_a7ddrphy_bitslip152[7];
 end
-`ifdef HME
-assign main_a7ddrphy_dfi_p0_rddata_valid = (main_a7ddrphy_rddata_en_tappeddelayline8 | main_a7ddrphy_wlevel_en_storage);
-assign main_a7ddrphy_dfi_p1_rddata_valid = (main_a7ddrphy_rddata_en_tappeddelayline8 | main_a7ddrphy_wlevel_en_storage);
-assign main_a7ddrphy_dfi_p2_rddata_valid = (main_a7ddrphy_rddata_en_tappeddelayline8 | main_a7ddrphy_wlevel_en_storage);
-assign main_a7ddrphy_dfi_p3_rddata_valid = (main_a7ddrphy_rddata_en_tappeddelayline8 | main_a7ddrphy_wlevel_en_storage);
-`else
+
 assign main_a7ddrphy_dfi_p0_rddata_valid = (main_a7ddrphy_rddata_en_tappeddelayline7 | main_a7ddrphy_wlevel_en_storage);
 assign main_a7ddrphy_dfi_p1_rddata_valid = (main_a7ddrphy_rddata_en_tappeddelayline7 | main_a7ddrphy_wlevel_en_storage);
 assign main_a7ddrphy_dfi_p2_rddata_valid = (main_a7ddrphy_rddata_en_tappeddelayline7 | main_a7ddrphy_wlevel_en_storage);
 assign main_a7ddrphy_dfi_p3_rddata_valid = (main_a7ddrphy_rddata_en_tappeddelayline7 | main_a7ddrphy_wlevel_en_storage);
-`endif
+
 assign main_a7ddrphy_dq_oe = main_a7ddrphy_wrdata_en_tappeddelayline1;
 always @(*) begin
     main_a7ddrphy_dqs_oe <= 1'd0;
@@ -4111,6 +4103,7 @@ always @(*) begin
     endcase
 end
 
+`ifndef HME
 reg [31:0] main_a7ddrphy_dfi_p0_rddata_d1 = 32'd0;
 reg [31:0] main_a7ddrphy_dfi_p1_rddata_d1 = 32'd0;
 reg [31:0] main_a7ddrphy_dfi_p2_rddata_d1 = 32'd0;
@@ -4122,6 +4115,7 @@ always @(posedge sys_clk) begin
 	main_a7ddrphy_dfi_p2_rddata_d1 <= main_a7ddrphy_dfi_p2_rddata;
 	main_a7ddrphy_dfi_p3_rddata_d1 <= main_a7ddrphy_dfi_p3_rddata;
 end
+`endif
 
 
 assign main_a7ddrphy_dfi_p0_address = main_basesoc_sdram_master_p0_address;
@@ -4138,7 +4132,11 @@ assign main_a7ddrphy_dfi_p0_wrdata = main_basesoc_sdram_master_p0_wrdata;
 assign main_a7ddrphy_dfi_p0_wrdata_en = main_basesoc_sdram_master_p0_wrdata_en;
 assign main_a7ddrphy_dfi_p0_wrdata_mask = main_basesoc_sdram_master_p0_wrdata_mask;
 assign main_a7ddrphy_dfi_p0_rddata_en = main_basesoc_sdram_master_p0_rddata_en;
+`ifndef HME
 assign main_basesoc_sdram_master_p0_rddata = main_a7ddrphy_dfi_p0_rddata_d1;
+`else
+assign main_basesoc_sdram_master_p0_rddata = main_a7ddrphy_dfi_p0_rddata;
+`endif
 assign main_basesoc_sdram_master_p0_rddata_valid = main_a7ddrphy_dfi_p0_rddata_valid;
 assign main_a7ddrphy_dfi_p1_address = main_basesoc_sdram_master_p1_address;
 assign main_a7ddrphy_dfi_p1_bank = main_basesoc_sdram_master_p1_bank;
@@ -4154,7 +4152,11 @@ assign main_a7ddrphy_dfi_p1_wrdata = main_basesoc_sdram_master_p1_wrdata;
 assign main_a7ddrphy_dfi_p1_wrdata_en = main_basesoc_sdram_master_p1_wrdata_en;
 assign main_a7ddrphy_dfi_p1_wrdata_mask = main_basesoc_sdram_master_p1_wrdata_mask;
 assign main_a7ddrphy_dfi_p1_rddata_en = main_basesoc_sdram_master_p1_rddata_en;
+`ifndef HME
 assign main_basesoc_sdram_master_p1_rddata = main_a7ddrphy_dfi_p1_rddata_d1;
+`else
+assign main_basesoc_sdram_master_p1_rddata = main_a7ddrphy_dfi_p1_rddata;
+`endif
 assign main_basesoc_sdram_master_p1_rddata_valid = main_a7ddrphy_dfi_p1_rddata_valid;
 assign main_a7ddrphy_dfi_p2_address = main_basesoc_sdram_master_p2_address;
 assign main_a7ddrphy_dfi_p2_bank = main_basesoc_sdram_master_p2_bank;
@@ -4170,7 +4172,11 @@ assign main_a7ddrphy_dfi_p2_wrdata = main_basesoc_sdram_master_p2_wrdata;
 assign main_a7ddrphy_dfi_p2_wrdata_en = main_basesoc_sdram_master_p2_wrdata_en;
 assign main_a7ddrphy_dfi_p2_wrdata_mask = main_basesoc_sdram_master_p2_wrdata_mask;
 assign main_a7ddrphy_dfi_p2_rddata_en = main_basesoc_sdram_master_p2_rddata_en;
+`ifndef HME
 assign main_basesoc_sdram_master_p2_rddata = main_a7ddrphy_dfi_p2_rddata_d1;
+`else
+assign main_basesoc_sdram_master_p2_rddata = main_a7ddrphy_dfi_p2_rddata;
+`endif
 assign main_basesoc_sdram_master_p2_rddata_valid = main_a7ddrphy_dfi_p2_rddata_valid;
 assign main_a7ddrphy_dfi_p3_address = main_basesoc_sdram_master_p3_address;
 assign main_a7ddrphy_dfi_p3_bank = main_basesoc_sdram_master_p3_bank;
@@ -4186,7 +4192,11 @@ assign main_a7ddrphy_dfi_p3_wrdata = main_basesoc_sdram_master_p3_wrdata;
 assign main_a7ddrphy_dfi_p3_wrdata_en = main_basesoc_sdram_master_p3_wrdata_en;
 assign main_a7ddrphy_dfi_p3_wrdata_mask = main_basesoc_sdram_master_p3_wrdata_mask;
 assign main_a7ddrphy_dfi_p3_rddata_en = main_basesoc_sdram_master_p3_rddata_en;
+`ifndef HME
 assign main_basesoc_sdram_master_p3_rddata = main_a7ddrphy_dfi_p3_rddata_d1;
+`else
+assign main_basesoc_sdram_master_p3_rddata = main_a7ddrphy_dfi_p3_rddata;
+`endif
 assign main_basesoc_sdram_master_p3_rddata_valid = main_a7ddrphy_dfi_p3_rddata_valid;
 assign main_basesoc_sdram_slave_p0_address = main_basesoc_sdram_dfi_p0_address;
 assign main_basesoc_sdram_slave_p0_bank = main_basesoc_sdram_dfi_p0_bank;
@@ -9131,9 +9141,7 @@ always @(posedge sys_clk) begin
     main_a7ddrphy_rddata_en_tappeddelayline5 <= main_a7ddrphy_rddata_en_tappeddelayline4;
     main_a7ddrphy_rddata_en_tappeddelayline6 <= main_a7ddrphy_rddata_en_tappeddelayline5;
     main_a7ddrphy_rddata_en_tappeddelayline7 <= main_a7ddrphy_rddata_en_tappeddelayline6;
-`ifdef HME    
-    main_a7ddrphy_rddata_en_tappeddelayline8 <= main_a7ddrphy_rddata_en_tappeddelayline7;
-`endif    
+    
     main_a7ddrphy_wrdata_en_tappeddelayline0 <= (((main_a7ddrphy_dfi_p0_wrdata_en | main_a7ddrphy_dfi_p1_wrdata_en) | main_a7ddrphy_dfi_p2_wrdata_en) | main_a7ddrphy_dfi_p3_wrdata_en);
     main_a7ddrphy_wrdata_en_tappeddelayline1 <= main_a7ddrphy_wrdata_en_tappeddelayline0;
     main_a7ddrphy_wrdata_en_tappeddelayline2 <= main_a7ddrphy_wrdata_en_tappeddelayline1;
