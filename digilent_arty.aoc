@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aoc version="2.3" device="P2P50N0V324-M0X1C7">
+	<ioConstraint>
+		<IO signal_name="clk100" pad_name="C0R96_PAD" location="IO11P_GCLK4_1" pin_no="E3" inst_name="io_clk100_inst" direction="input" operation_mode="clock"/>
+		<IO signal_name="cpu_reset" pad_name="C0R69_PAD" location="IO10P_2" pin_no="C2" inst_name="io_cpu_reset_inst" direction="input" operation_mode="normal"/>
+		<IO signal_name="ddram_a_0_" pad_name="C0R29_PAD" location="IO2N_3" pin_no="R2" inst_name="OSERDESE2_19_cvlvds_inst0" direction="output" operation_mode="normal"/>
+		<IO signal_name="ddram_a_1_" pad_name="C0R30_PAD" location="IO3P_3" pin_no="M6" inst_name="OSERDESE2_4_cvlvds_inst0" direction="output" operation_mode="normal"/>
+		<IO signal_name="ddram_a_2_" pad_name="C0R35_PAD" location="IO5N_3" pin_no="N4" inst_name="OSERDESE2_21_cvlvds_inst0" direction="output" operation_mode="normal"/>
+		<IO signal_name="ddram_a_3_" pad_name="C0R27_PAD" location="IO1N_3" pin_no="T1" inst_name="OSERDESE2_17_cvlvds_inst0" direction="output" operation_mode="normal"/>
+		<IO signal_name="ddram_a_4_" pad_name="C0R31_PAD" location="IO3N_3" pin_no="N6" inst_name="OSERDESE2_4_cvlvds_inst0" direction="output" operation_mode="normal"/>
+		<IO signal_name="ddram_a_5_" pad_name="C0R3_PAD" location="IO2P_4" pin_no="R7" inst_name="OSERDESE2_8_cvlvds_inst0" direction="output" operation_mode="normal"/>
+		<IO signal_name="ddram_a_6_" pad_name="C0R12_PAD" location="IO6N_4" pin_no="V6" inst_name="OSERDESE2_12_cvlvds_inst0" direction="output" operation_mode="normal"/>
+		<IO signal_name="ddram_a_7_" pad_name="C0R9_PAD" location="IO5P_4" pin_no="U7" inst_name="OSERDESE2_10_cvlvds_inst0" direction="output" operation_mode="normal"/>
+		<IO signal_name="ddram_a_8_" pad_name="C0R1_PAD" location="IO1P_4" pin_no="R8" inst_name="OSERDESE2_11_cvlvds_inst0" direction="output" operation_mode="normal"/>
+		<IO signal_name="ddram_a_9_" pad_name="C0R11_PAD" location="IO6P_4" pin_no="V7" inst_name="OSERDESE2_12_cvlvds_inst0" direction="output" operation_mode="normal"/>
+		<IO signal_name="ddram_a_10_" pad_name="C0R14_PAD" location="IO7P_4" pin_no="R6" inst_name="OSERDESE2_13_cvlvds_inst0" direction="output" operation_mode="normal"/>
+		<IO signal_name="ddram_a_11_" pad_name="C0R10_PAD" location="IO5N_4" pin_no="U6" inst_name="OSERDESE2_10_cvlvds_inst0" direction="output" operation_mode="normal"/>
+		<IO signal_name="ddram_a_12_" pad_name="C0R4_PAD" location="IO2N_4" pin_no="T6" inst_name="OSERDESE2_8_cvlvds_inst0" direction="output" operation_mode="normal"/>
+		<IO signal_name="ddram_a_13_" pad_name="C0R2_PAD" location="IO1N_4" pin_no="T8" inst_name="OSERDESE2_11_cvlvds_inst0" direction="output" operation_mode="normal"/>
+		<IO signal_name="ddram_ba_0_" pad_name="C0R26_PAD" location="IO1P_3" pin_no="R1" inst_name="OSERDESE2_17_cvlvds_inst0" direction="output" operation_mode="normal"/>
+		<IO signal_name="ddram_ba_1_" pad_name="C0R32_PAD" location="IO4P_GCLK13_3" pin_no="P4" inst_name="OSERDESE2_18_cvlvds_inst0" direction="output" operation_mode="normal"/>
+		<IO signal_name="ddram_ba_2_" pad_name="C0R28_PAD" location="IO2P_3" pin_no="P2" inst_name="OSERDESE2_19_cvlvds_inst0" direction="output" operation_mode="normal"/>
+		<IO signal_name="ddram_cas_n" pad_name="C0R34_PAD" location="IO5P_3" pin_no="M4" inst_name="OSERDESE2_21_cvlvds_inst0" direction="output" operation_mode="normal"/>
+		<IO signal_name="ddram_cke" pad_name="C0R43_PAD" location="IO9P_GCLK12_3" pin_no="N5" inst_name="OSERDESE2_23_cvlvds_inst0" direction="output" operation_mode="normal"/>
+		<IO signal_name="ddram_clk_n" pad_name="C0R6_PAD" location="IO3N_4" pin_no="V9" inst_name="OSERDESE2_cvlvds_inst0" direction="output" operation_mode="normal"/>
+		<IO signal_name="ddram_clk_p" pad_name="C0R5_PAD" location="IO3P_4" pin_no="U9" inst_name="OSERDESE2_cvlvds_inst0" direction="output" operation_mode="normal"/>
+		<IO signal_name="ddram_cs_n" pad_name="C0R37_PAD" location="IO6N_3" pin_no="L5" inst_name="OSERDESE2_38_cvlvds_inst0" direction="output" operation_mode="normal"/>
+		<IO signal_name="ddram_dm_0_" pad_name="C0R49_PAD" location="IO12P_3" pin_no="L1" inst_name="OSERDESE2_27_cvlvds_inst0" direction="output" operation_mode="normal"/>
+		<IO signal_name="ddram_dm_1_" pad_name="C0R24_PAD" location="IO12P_4" pin_no="U1" inst_name="OSERDESE2_28_cvlvds_inst0" direction="output" operation_mode="normal"/>
+		<IO signal_name="ddram_dq_0_" pad_name="C0R39_PAD" location="IO7P_3" pin_no="K5" inst_name="OSERDESE2_29_cvlvds_inst0" direction="inout" operation_mode="normal"/>
+		<IO signal_name="ddram_dq_1_" pad_name="C0R48_PAD" location="IO11N_3" pin_no="L3" inst_name="OSERDESE2_31_cvlvds_inst0" direction="inout" operation_mode="normal"/>
+		<IO signal_name="ddram_dq_2_" pad_name="C0R47_PAD" location="IO11P_3" pin_no="K3" inst_name="OSERDESE2_31_cvlvds_inst0" direction="inout" operation_mode="normal"/>
+		<IO signal_name="ddram_dq_3_" pad_name="C0R7_PAD" location="IO4P_GCLK15_4" pin_no="T5" inst_name="OSERDESE2_32_cvlvds_inst0" direction="inout" operation_mode="normal"/>
+		<IO signal_name="ddram_dq_4_" pad_name="C0R41_PAD" location="IO8P_3" pin_no="M3" inst_name="OSERDESE2_33_cvlvds_inst0" direction="inout" operation_mode="normal"/>
+		<IO signal_name="ddram_dq_5_" pad_name="C0R50_PAD" location="IO12N_3" pin_no="M1" inst_name="OSERDESE2_27_cvlvds_inst0" direction="inout" operation_mode="normal"/>
+		<IO signal_name="ddram_dq_6_" pad_name="C0R40_PAD" location="IO7N_3" pin_no="L4" inst_name="OSERDESE2_29_cvlvds_inst0" direction="inout" operation_mode="normal"/>
+		<IO signal_name="ddram_dq_7_" pad_name="C0R42_PAD" location="IO8N_3" pin_no="M2" inst_name="OSERDESE2_33_cvlvds_inst0" direction="inout" operation_mode="normal"/>
+		<IO signal_name="ddram_dq_8_" pad_name="C0R17_PAD" location="IO8N_4" pin_no="V4" inst_name="OSERDESE2_40_cvlvds_inst0" direction="inout" operation_mode="normal"/>
+		<IO signal_name="ddram_dq_9_" pad_name="C0R36_PAD" location="IO6P_3" pin_no="L6" inst_name="OSERDESE2_38_cvlvds_inst0" direction="inout" operation_mode="normal"/>
+		<IO signal_name="ddram_dq_10_" pad_name="C0R22_PAD" location="IO11P_4" pin_no="U4" inst_name="OSERDESE2_39_cvlvds_inst0" direction="inout" operation_mode="normal"/>
+		<IO signal_name="ddram_dq_11_" pad_name="C0R16_PAD" location="IO8P_4" pin_no="V5" inst_name="OSERDESE2_40_cvlvds_inst0" direction="inout" operation_mode="normal"/>
+		<IO signal_name="ddram_dq_12_" pad_name="C0R25_PAD" location="IO12N_4" pin_no="V1" inst_name="OSERDESE2_28_cvlvds_inst0" direction="inout" operation_mode="normal"/>
+		<IO signal_name="ddram_dq_13_" pad_name="C0R19_PAD" location="IO9N_4" pin_no="T3" inst_name="OSERDESE2_44_cvlvds_inst0" direction="inout" operation_mode="normal"/>
+		<IO signal_name="ddram_dq_14_" pad_name="C0R23_PAD" location="IO11N_4" pin_no="U3" inst_name="OSERDESE2_39_cvlvds_inst0" direction="inout" operation_mode="normal"/>
+		<IO signal_name="ddram_dq_15_" pad_name="C0R18_PAD" location="IO9P_GCLK14_4" pin_no="R3" inst_name="OSERDESE2_44_cvlvds_inst0" direction="inout" operation_mode="normal"/>
+		<IO signal_name="ddram_dqs_n_0_" pad_name="C0R46_PAD" location="IO10N_3" pin_no="N1" inst_name="OSERDESE2_25_cvlvds_inst0" direction="inout" operation_mode="normal"/>
+		<IO signal_name="ddram_dqs_n_1_" pad_name="C0R21_PAD" location="IO10N_4" pin_no="V2" inst_name="OSERDESE2_26_cvlvds_inst0" direction="inout" operation_mode="normal"/>
+		<IO signal_name="ddram_dqs_p_0_" pad_name="C0R45_PAD" location="IO10P_3" pin_no="N2" inst_name="OSERDESE2_25_cvlvds_inst0" direction="inout" operation_mode="normal"/>
+		<IO signal_name="ddram_dqs_p_1_" pad_name="C0R20_PAD" location="IO10P_4" pin_no="U2" inst_name="OSERDESE2_26_cvlvds_inst0" direction="inout" operation_mode="normal"/>
+		<IO signal_name="ddram_odt" pad_name="C0R15_PAD" location="IO7N_4" pin_no="R5" inst_name="OSERDESE2_13_cvlvds_inst0" direction="output" operation_mode="normal"/>
+		<IO signal_name="ddram_ras_n" pad_name="C0R33_PAD" location="IO4N_3" pin_no="P3" inst_name="OSERDESE2_18_cvlvds_inst0" direction="output" operation_mode="normal"/>
+		<IO signal_name="ddram_reset_n" pad_name="C0R8_PAD" location="IO4N_4" pin_no="T4" inst_name="OSERDESE2_32_cvlvds_inst0" direction="output" operation_mode="normal"/>
+		<IO signal_name="ddram_we_n" pad_name="C0R44_PAD" location="IO9N_3" pin_no="P5" inst_name="OSERDESE2_23_cvlvds_inst0" direction="output" operation_mode="normal"/>
+		<IO signal_name="eth_ref_clk" pad_name="io32_lcsn" location="IO32_LCSN_0" pin_no="V15" inst_name="io_eth_ref_clk_inst" direction="output" operation_mode="normal"/>
+		<IO signal_name="serial_rx" pad_name="C39R229_PAD" location="IO2N_GCLK36_10" pin_no="A9" inst_name="io_serial_rx_inst" direction="input" operation_mode="normal"/>
+		<IO signal_name="serial_tx" pad_name="C39R244_PAD" location="IO10P_10" pin_no="D10" inst_name="io_serial_tx_inst" direction="output" operation_mode="normal"/>
+		<IO signal_name="test_0_" pad_name="C39R200_PAD" location="IO25_8" pin_no="G13" inst_name="io_test_0__inst" direction="output" operation_mode="normal"/>
+		<IO signal_name="test_1_" pad_name="C39R190_PAD" location="IO8P_8" pin_no="B11" inst_name="io_test_1__inst" direction="output" operation_mode="normal"/>
+		<IO signal_name="test_2_" pad_name="C39R191_PAD" location="IO8N_GCLK30_8" pin_no="A11" inst_name="io_test_2__inst" direction="output" operation_mode="normal"/>
+		<IO signal_name="test_3_" pad_name="C39R186_PAD" location="IO6P_8" pin_no="D12" inst_name="io_test_3__inst" direction="output" operation_mode="normal"/>
+		<IO signal_name="user_led0" pad_name="C0R52_PAD" location="IO1N_2" pin_no="H5" inst_name="io_user_led0_inst" direction="output" operation_mode="normal"/>
+		<IO signal_name="user_led1" pad_name="C0R75_PAD" location="IO25_2" pin_no="J5" inst_name="io_user_led1_inst" direction="output" operation_mode="normal"/>
+		<IO signal_name="user_led2" pad_name="C39R101_PAD" location="IO1P_5" pin_no="T9" inst_name="io_user_led2_inst" direction="output" operation_mode="normal"/>
+		<IO signal_name="user_led3" pad_name="C39R102_PAD" location="IO1N_5" pin_no="T10" inst_name="io_user_led3_inst" direction="output" operation_mode="normal"/>
+	</ioConstraint>
+	<pairedIoConstraint>
+		<Pair PAD0="ddram_a_7_" PAD1="ddram_a_11_" pairType="LVDS"/>
+		<Pair PAD0="ddram_a_8_" PAD1="ddram_a_13_" pairType="LVDS"/>
+		<Pair PAD0="ddram_a_9_" PAD1="ddram_a_6_" pairType="LVDS"/>
+		<Pair PAD0="ddram_a_10_" PAD1="ddram_odt" pairType="LVDS"/>
+		<Pair PAD0="ddram_ba_0_" PAD1="ddram_a_3_" pairType="LVDS"/>
+		<Pair PAD0="ddram_ba_1_" PAD1="ddram_ras_n" pairType="LVDS"/>
+		<Pair PAD0="ddram_ba_2_" PAD1="ddram_a_0_" pairType="LVDS"/>
+		<Pair PAD0="ddram_cas_n" PAD1="ddram_a_2_" pairType="LVDS"/>
+		<Pair PAD0="ddram_cke" PAD1="ddram_we_n" pairType="LVDS"/>
+		<Pair PAD0="ddram_dqs_p_0_" PAD1="ddram_dqs_n_0_" pairType="LVDS"/>
+		<Pair PAD0="ddram_dqs_p_1_" PAD1="ddram_dqs_n_1_" pairType="LVDS"/>
+		<Pair PAD0="ddram_dm_0_" PAD1="ddram_dq_5_" pairType="LVDS"/>
+		<Pair PAD0="ddram_dm_1_" PAD1="ddram_dq_12_" pairType="LVDS"/>
+		<Pair PAD0="ddram_dq_0_" PAD1="ddram_dq_6_" pairType="LVDS"/>
+		<Pair PAD0="ddram_dq_2_" PAD1="ddram_dq_1_" pairType="LVDS"/>
+		<Pair PAD0="ddram_dq_3_" PAD1="ddram_reset_n" pairType="LVDS"/>
+		<Pair PAD0="ddram_dq_4_" PAD1="ddram_dq_7_" pairType="LVDS"/>
+		<Pair PAD0="ddram_dq_9_" PAD1="ddram_cs_n" pairType="LVDS"/>
+		<Pair PAD0="ddram_dq_10_" PAD1="ddram_dq_14_" pairType="LVDS"/>
+		<Pair PAD0="ddram_dq_11_" PAD1="ddram_dq_8_" pairType="LVDS"/>
+		<Pair PAD0="ddram_dq_15_" PAD1="ddram_dq_13_" pairType="LVDS"/>
+		<Pair PAD0="ddram_a_1_" PAD1="ddram_a_4_" pairType="LVDS"/>
+		<Pair PAD0="ddram_a_5_" PAD1="ddram_a_12_" pairType="LVDS"/>
+		<Pair PAD0="ddram_clk_p" PAD1="ddram_clk_n" pairType="LVDS"/>
+	</pairedIoConstraint>
+</aoc>
+
