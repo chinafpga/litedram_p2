@@ -32,5 +32,6 @@
         <file isTestBench="1">$(PRJ_DIR)/src/imports/sim_tb_top.v</file>
         <file isTestBench="1" type="N/A">$(PRJ_DIR)/src/imports/ddr3_model.sv</file>
         <file isTestBench="1">$(PRJ_DIR)/src/imports/wiredly.v</file>
+        <file>$(PRJ_DIR)/src/imports/tag_mem.v</file>
     </files>
 </AgateProject>

@@ -4397,7 +4397,7 @@ initial // check init_file
         dwidth = 0;
         fh = 0;
         fs = 0;
-        if(is_initialized == 1'b1) begin
+        //if(is_initialized == 1'b1) begin
             for(i = 0; i < 32; i = i+1) begin
                 //mem[i] = {init_0f[i], init_0e[i], init_0d[i], init_0c[i], init_0b[i], init_0a[i], init_09[i], init_08[i],
                 //          initp_01[i], initp_00[i],
@@ -4419,7 +4419,7 @@ initial // check init_file
                 mem[i+448 ] <= {init_0e[i*16+15 -:8 ], initp_01[i*2+385 -:2 ],  init_0e[i*16+7 -:8 ]};
                 mem[i+480 ] <= {init_0f[i*16+15 -:8 ], initp_01[i*2+449 -:2 ],  init_0f[i*16+7 -:8 ]};
             end
-        end
+        //end
 
         #1;
         // Initialize mem_data
@@ -5641,8 +5641,16 @@ assign txd1_out = CFG_ODLC1_BYPASS == 1'b1 ? TXD1 : txd1_dly;
 ///////////////////////////////////////////////////////////////
 
 //paramter check
-wire [2:0] rxen_sel0 = {CFG_RX_DIFF_EN, CFG_RX_SINGLE_EN_0, CFG_RX_DIG_EN_0};
-wire [2:0] rxen_sel1 = {CFG_RX_DIFF_EN, CFG_RX_SINGLE_EN_1, CFG_RX_DIG_EN_1};
+//wire [2:0] rxen_sel0 = {CFG_RX_DIFF_EN, CFG_RX_SINGLE_EN_0, CFG_RX_DIG_EN_0};
+//wire [2:0] rxen_sel1 = {CFG_RX_DIFF_EN, CFG_RX_SINGLE_EN_1, CFG_RX_DIG_EN_1};
+wire [2:0] rxen_sel0;
+wire [2:0] rxen_sel1;
+assign rxen_sel0[0] = CFG_RX_DIG_EN_0;
+assign rxen_sel0[1] = CFG_RX_SINGLE_EN_0;
+assign rxen_sel0[2] = CFG_RX_DIFF_EN;
+assign rxen_sel1[0] = CFG_RX_DIG_EN_1;
+assign rxen_sel1[1] = CFG_RX_SINGLE_EN_1;
+assign rxen_sel1[2] = CFG_RX_DIFF_EN;
 
 assign LP_RXD0 = rx_lp_en_0 == 1'b1 ? rxd0_in : 1'b0;
 assign LP_RXD1 = rx_lp_en_1 == 1'b1 ? rxd1_in : 1'b0;
