@@ -2057,35 +2057,22 @@ reg    [31:0] main_basesoc_wb_sdram_dat_r = 32'd0;
 wire    [3:0] main_basesoc_wb_sdram_sel;
 wire          main_basesoc_wb_sdram_cyc;
 wire          main_basesoc_wb_sdram_stb;
-reg           main_basesoc_wb_sdram_ack = 1'd0;
+wire          main_basesoc_wb_sdram_ack;
 wire          main_basesoc_wb_sdram_we;
 wire    [2:0] main_basesoc_wb_sdram_cti;
 wire    [1:0] main_basesoc_wb_sdram_bte;
-reg           main_basesoc_wb_sdram_err = 1'd0;
-wire   [29:0] main_basesoc_interface_adr;
-wire  [127:0] main_basesoc_interface_dat_w;
-reg   [127:0] main_basesoc_interface_dat_r = 128'd0;
-wire   [15:0] main_basesoc_interface_sel;
-reg           main_basesoc_interface_cyc = 1'd0;
-reg           main_basesoc_interface_stb = 1'd0;
-reg           main_basesoc_interface_ack = 1'd0;
-reg           main_basesoc_interface_we = 1'd0;
-wire    [8:0] main_basesoc_data_port_adr;
-wire  [127:0] main_basesoc_data_port_dat_r;
-reg    [15:0] main_basesoc_data_port_we = 16'd0;
-reg   [127:0] main_basesoc_data_port_dat_w = 128'd0;
-reg           main_basesoc_write_from_slave = 1'd0;
-reg     [1:0] main_basesoc_adr_offset_r = 2'd0;
-wire    [8:0] main_basesoc_tag_port_adr;
-wire   [23:0] main_basesoc_tag_port_dat_r;
-reg           main_basesoc_tag_port_we = 1'd0;
-wire   [23:0] main_basesoc_tag_port_dat_w;
-wire   [22:0] main_basesoc_tag_do_tag;
-wire          main_basesoc_tag_do_dirty;
-wire   [22:0] main_basesoc_tag_di_tag;
-reg           main_basesoc_tag_di_dirty = 1'd0;
-reg           main_basesoc_word_clr = 1'd0;
-reg           main_basesoc_word_inc = 1'd0;
+wire          main_basesoc_wb_sdram_err;
+reg    [29:0] main_basesoc_litedram_wb_adr = 30'd0;
+reg   [127:0] main_basesoc_litedram_wb_dat_w = 128'd0;
+reg   [127:0] main_basesoc_litedram_wb_dat_r = 128'd0;
+reg    [15:0] main_basesoc_litedram_wb_sel = 16'd0;
+wire          main_basesoc_litedram_wb_cyc;
+wire          main_basesoc_litedram_wb_stb;
+reg           main_basesoc_litedram_wb_ack = 1'd0;
+wire          main_basesoc_litedram_wb_we;
+wire    [2:0] main_basesoc_litedram_wb_cti;
+wire    [1:0] main_basesoc_litedram_wb_bte;
+reg           main_basesoc_litedram_wb_err = 1'd0;
 reg           main_basesoc_aborted = 1'd0;
 reg           main_basesoc_is_ongoing = 1'd0;
 reg     [3:0] main_storage = 4'd0;
@@ -2442,8 +2429,6 @@ reg           builder_basesoc_new_master_rdata_valid5 = 1'd0;
 reg           builder_basesoc_new_master_rdata_valid6 = 1'd0;
 reg           builder_basesoc_new_master_rdata_valid7 = 1'd0;
 reg           builder_basesoc_new_master_rdata_valid8 = 1'd0;
-reg     [1:0] builder_basesoc_fullmemorywe_state = 2'd0;
-reg     [1:0] builder_basesoc_fullmemorywe_next_state = 2'd0;
 reg     [1:0] builder_basesoc_litedramwishbone2native_state = 2'd0;
 reg     [1:0] builder_basesoc_litedramwishbone2native_next_state = 2'd0;
 reg           main_basesoc_aborted_litedramwishbone2native_next_value = 1'd0;
@@ -6554,160 +6539,95 @@ assign builder_basesoc_roundrobin4_grant = 1'd0;
 assign builder_basesoc_roundrobin5_grant = 1'd0;
 assign builder_basesoc_roundrobin6_grant = 1'd0;
 assign builder_basesoc_roundrobin7_grant = 1'd0;
-assign main_basesoc_data_port_adr = main_basesoc_wb_sdram_adr[10:2];
+assign main_basesoc_litedram_wb_cyc = main_basesoc_wb_sdram_cyc;
+assign main_basesoc_litedram_wb_stb = main_basesoc_wb_sdram_stb;
+assign main_basesoc_wb_sdram_ack = main_basesoc_litedram_wb_ack;
+assign main_basesoc_litedram_wb_we = main_basesoc_wb_sdram_we;
+assign main_basesoc_litedram_wb_cti = main_basesoc_wb_sdram_cti;
+assign main_basesoc_litedram_wb_bte = main_basesoc_wb_sdram_bte;
+assign main_basesoc_wb_sdram_err = main_basesoc_litedram_wb_err;
 always @(*) begin
-    main_basesoc_data_port_we <= 16'd0;
-    main_basesoc_data_port_dat_w <= 128'd0;
-    if (main_basesoc_write_from_slave) begin
-        main_basesoc_data_port_dat_w <= main_basesoc_interface_dat_r;
-        main_basesoc_data_port_we <= {16{1'd1}};
-    end else begin
-        main_basesoc_data_port_dat_w <= {4{main_basesoc_wb_sdram_dat_w}};
-        if ((((main_basesoc_wb_sdram_cyc & main_basesoc_wb_sdram_stb) & main_basesoc_wb_sdram_we) & main_basesoc_wb_sdram_ack)) begin
-            main_basesoc_data_port_we <= {({4{(main_basesoc_wb_sdram_adr[1:0] == 2'd3)}} & main_basesoc_wb_sdram_sel), ({4{(main_basesoc_wb_sdram_adr[1:0] == 2'd2)}} & main_basesoc_wb_sdram_sel), ({4{(main_basesoc_wb_sdram_adr[1:0] == 1'd1)}} & main_basesoc_wb_sdram_sel), ({4{(main_basesoc_wb_sdram_adr[1:0] == 1'd0)}} & main_basesoc_wb_sdram_sel)};
-        end
-    end
-end
-assign main_basesoc_interface_dat_w = main_basesoc_data_port_dat_r;
-assign main_basesoc_interface_sel = 16'd65535;
-always @(*) begin
+    main_basesoc_litedram_wb_sel <= 16'd0;
     main_basesoc_wb_sdram_dat_r <= 32'd0;
-    case (main_basesoc_adr_offset_r)
+    main_basesoc_litedram_wb_adr <= 30'd0;
+    main_basesoc_litedram_wb_dat_w <= 128'd0;
+    case (main_basesoc_wb_sdram_adr[1:0])
         1'd0: begin
-            main_basesoc_wb_sdram_dat_r <= main_basesoc_data_port_dat_r[31:0];
+            main_basesoc_litedram_wb_adr <= main_basesoc_wb_sdram_adr[29:2];
+            main_basesoc_litedram_wb_sel[3:0] <= main_basesoc_wb_sdram_sel;
+            main_basesoc_litedram_wb_dat_w[31:0] <= main_basesoc_wb_sdram_dat_w;
+            main_basesoc_wb_sdram_dat_r <= main_basesoc_litedram_wb_dat_r[31:0];
         end
         1'd1: begin
-            main_basesoc_wb_sdram_dat_r <= main_basesoc_data_port_dat_r[63:32];
+            main_basesoc_litedram_wb_adr <= main_basesoc_wb_sdram_adr[29:2];
+            main_basesoc_litedram_wb_sel[7:4] <= main_basesoc_wb_sdram_sel;
+            main_basesoc_litedram_wb_dat_w[63:32] <= main_basesoc_wb_sdram_dat_w;
+            main_basesoc_wb_sdram_dat_r <= main_basesoc_litedram_wb_dat_r[63:32];
         end
         2'd2: begin
-            main_basesoc_wb_sdram_dat_r <= main_basesoc_data_port_dat_r[95:64];
-        end
-        default: begin
-            main_basesoc_wb_sdram_dat_r <= main_basesoc_data_port_dat_r[127:96];
-        end
-    endcase
-end
-assign {main_basesoc_tag_do_dirty, main_basesoc_tag_do_tag} = main_basesoc_tag_port_dat_r;
-assign main_basesoc_tag_port_dat_w = {main_basesoc_tag_di_dirty, main_basesoc_tag_di_tag};
-assign main_basesoc_tag_port_adr = main_basesoc_wb_sdram_adr[10:2];
-assign main_basesoc_tag_di_tag = main_basesoc_wb_sdram_adr[29:11];
-assign main_basesoc_interface_adr = {main_basesoc_tag_do_tag, main_basesoc_wb_sdram_adr[10:2]};
-always @(*) begin
-    main_basesoc_wb_sdram_ack <= 1'd0;
-    builder_basesoc_fullmemorywe_next_state <= 2'd0;
-    main_basesoc_tag_di_dirty <= 1'd0;
-    main_basesoc_word_clr <= 1'd0;
-    main_basesoc_word_inc <= 1'd0;
-    main_basesoc_write_from_slave <= 1'd0;
-    main_basesoc_interface_cyc <= 1'd0;
-    main_basesoc_interface_stb <= 1'd0;
-    main_basesoc_tag_port_we <= 1'd0;
-    main_basesoc_interface_we <= 1'd0;
-    builder_basesoc_fullmemorywe_next_state <= builder_basesoc_fullmemorywe_state;
-    case (builder_basesoc_fullmemorywe_state)
-        1'd1: begin
-            main_basesoc_word_clr <= 1'd1;
-            if ((main_basesoc_tag_do_tag == main_basesoc_wb_sdram_adr[29:11])) begin
-                main_basesoc_wb_sdram_ack <= 1'd1;
-                if (main_basesoc_wb_sdram_we) begin
-                    main_basesoc_tag_di_dirty <= 1'd1;
-                    main_basesoc_tag_port_we <= 1'd1;
-                end
-                builder_basesoc_fullmemorywe_next_state <= 1'd0;
-            end else begin
-                if (main_basesoc_tag_do_dirty) begin
-                    builder_basesoc_fullmemorywe_next_state <= 2'd2;
-                end else begin
-                    main_basesoc_tag_port_we <= 1'd1;
-                    main_basesoc_word_clr <= 1'd1;
-                    builder_basesoc_fullmemorywe_next_state <= 2'd3;
-                end
-            end
-        end
-        2'd2: begin
-            main_basesoc_interface_stb <= 1'd1;
-            main_basesoc_interface_cyc <= 1'd1;
-            main_basesoc_interface_we <= 1'd1;
-            if (main_basesoc_interface_ack) begin
-                main_basesoc_word_inc <= 1'd1;
-                if (1'd1) begin
-                    main_basesoc_tag_port_we <= 1'd1;
-                    main_basesoc_word_clr <= 1'd1;
-                    builder_basesoc_fullmemorywe_next_state <= 2'd3;
-                end
-            end
+            main_basesoc_litedram_wb_adr <= main_basesoc_wb_sdram_adr[29:2];
+            main_basesoc_litedram_wb_sel[11:8] <= main_basesoc_wb_sdram_sel;
+            main_basesoc_litedram_wb_dat_w[95:64] <= main_basesoc_wb_sdram_dat_w;
+            main_basesoc_wb_sdram_dat_r <= main_basesoc_litedram_wb_dat_r[95:64];
         end
         2'd3: begin
-            main_basesoc_interface_stb <= 1'd1;
-            main_basesoc_interface_cyc <= 1'd1;
-            main_basesoc_interface_we <= 1'd0;
-            if (main_basesoc_interface_ack) begin
-                main_basesoc_write_from_slave <= 1'd1;
-                main_basesoc_word_inc <= 1'd1;
-                if (1'd1) begin
-                    builder_basesoc_fullmemorywe_next_state <= 1'd1;
-                end else begin
-                    builder_basesoc_fullmemorywe_next_state <= 2'd3;
-                end
-            end
-        end
-        default: begin
-            if ((main_basesoc_wb_sdram_cyc & main_basesoc_wb_sdram_stb)) begin
-                builder_basesoc_fullmemorywe_next_state <= 1'd1;
-            end
+            main_basesoc_litedram_wb_adr <= main_basesoc_wb_sdram_adr[29:2];
+            main_basesoc_litedram_wb_sel[15:12] <= main_basesoc_wb_sdram_sel;
+            main_basesoc_litedram_wb_dat_w[127:96] <= main_basesoc_wb_sdram_dat_w;
+            main_basesoc_wb_sdram_dat_r <= main_basesoc_litedram_wb_dat_r[127:96];
         end
     endcase
 end
-assign main_basesoc_port_cmd_payload_addr = (main_basesoc_interface_adr - 27'd67108864);
-assign main_basesoc_port_cmd_payload_we = main_basesoc_interface_we;
-assign main_basesoc_port_cmd_last = (~main_basesoc_interface_we);
-assign main_basesoc_port_flush = (~main_basesoc_interface_cyc);
+assign main_basesoc_port_cmd_payload_addr = (main_basesoc_litedram_wb_adr - 27'd67108864);
+assign main_basesoc_port_cmd_payload_we = main_basesoc_litedram_wb_we;
+assign main_basesoc_port_cmd_last = (~main_basesoc_litedram_wb_we);
+assign main_basesoc_port_flush = (~main_basesoc_litedram_wb_cyc);
 always @(*) begin
     main_basesoc_port_wdata_valid <= 1'd0;
-    main_basesoc_port_wdata_valid <= (main_basesoc_interface_stb & main_basesoc_interface_we);
+    main_basesoc_port_wdata_valid <= (main_basesoc_litedram_wb_stb & main_basesoc_litedram_wb_we);
     if (1'd1) begin
         if ((~main_basesoc_is_ongoing)) begin
             main_basesoc_port_wdata_valid <= 1'd0;
         end
     end
 end
-assign main_basesoc_port_wdata_payload_data = main_basesoc_interface_dat_w;
-assign main_basesoc_port_wdata_payload_we = main_basesoc_interface_sel;
+assign main_basesoc_port_wdata_payload_data = main_basesoc_litedram_wb_dat_w;
+assign main_basesoc_port_wdata_payload_we = main_basesoc_litedram_wb_sel;
 assign main_basesoc_port_rdata_ready = 1'd1;
 always @(*) begin
     main_basesoc_aborted_litedramwishbone2native_next_value <= 1'd0;
-    main_basesoc_port_cmd_valid <= 1'd0;
-    main_basesoc_aborted_litedramwishbone2native_next_value_ce <= 1'd0;
-    main_basesoc_interface_ack <= 1'd0;
-    main_basesoc_interface_dat_r <= 128'd0;
-    builder_basesoc_litedramwishbone2native_next_state <= 2'd0;
     main_basesoc_is_ongoing <= 1'd0;
+    main_basesoc_aborted_litedramwishbone2native_next_value_ce <= 1'd0;
+    main_basesoc_port_cmd_valid <= 1'd0;
+    main_basesoc_litedram_wb_ack <= 1'd0;
+    builder_basesoc_litedramwishbone2native_next_state <= 2'd0;
+    main_basesoc_litedram_wb_dat_r <= 128'd0;
     builder_basesoc_litedramwishbone2native_next_state <= builder_basesoc_litedramwishbone2native_state;
     case (builder_basesoc_litedramwishbone2native_state)
         1'd1: begin
             main_basesoc_is_ongoing <= 1'd1;
-            main_basesoc_aborted_litedramwishbone2native_next_value <= ((~main_basesoc_interface_cyc) | main_basesoc_aborted);
+            main_basesoc_aborted_litedramwishbone2native_next_value <= ((~main_basesoc_litedram_wb_cyc) | main_basesoc_aborted);
             main_basesoc_aborted_litedramwishbone2native_next_value_ce <= 1'd1;
             if ((main_basesoc_port_wdata_valid & main_basesoc_port_wdata_ready)) begin
-                main_basesoc_interface_ack <= (main_basesoc_interface_cyc & (~main_basesoc_aborted));
+                main_basesoc_litedram_wb_ack <= (main_basesoc_litedram_wb_cyc & (~main_basesoc_aborted));
                 builder_basesoc_litedramwishbone2native_next_state <= 1'd0;
             end
         end
         2'd2: begin
-            main_basesoc_aborted_litedramwishbone2native_next_value <= ((~main_basesoc_interface_cyc) | main_basesoc_aborted);
+            main_basesoc_aborted_litedramwishbone2native_next_value <= ((~main_basesoc_litedram_wb_cyc) | main_basesoc_aborted);
             main_basesoc_aborted_litedramwishbone2native_next_value_ce <= 1'd1;
             if (main_basesoc_port_rdata_valid) begin
-                main_basesoc_interface_ack <= (main_basesoc_interface_cyc & (~main_basesoc_aborted));
-                main_basesoc_interface_dat_r <= main_basesoc_port_rdata_payload_data;
+                main_basesoc_litedram_wb_ack <= (main_basesoc_litedram_wb_cyc & (~main_basesoc_aborted));
+                main_basesoc_litedram_wb_dat_r <= main_basesoc_port_rdata_payload_data;
                 builder_basesoc_litedramwishbone2native_next_state <= 1'd0;
             end
         end
         default: begin
-            main_basesoc_port_cmd_valid <= (main_basesoc_interface_cyc & main_basesoc_interface_stb);
-            if (((main_basesoc_port_cmd_valid & main_basesoc_port_cmd_ready) & main_basesoc_interface_we)) begin
+            main_basesoc_port_cmd_valid <= (main_basesoc_litedram_wb_cyc & main_basesoc_litedram_wb_stb);
+            if (((main_basesoc_port_cmd_valid & main_basesoc_port_cmd_ready) & main_basesoc_litedram_wb_we)) begin
                 builder_basesoc_litedramwishbone2native_next_state <= 1'd1;
             end
-            if (((main_basesoc_port_cmd_valid & main_basesoc_port_cmd_ready) & (~main_basesoc_interface_we))) begin
+            if (((main_basesoc_port_cmd_valid & main_basesoc_port_cmd_ready) & (~main_basesoc_litedram_wb_we))) begin
                 builder_basesoc_litedramwishbone2native_next_state <= 2'd2;
             end
             main_basesoc_aborted_litedramwishbone2native_next_value <= 1'd0;
@@ -10449,8 +10369,6 @@ always @(posedge sys_clk) begin
     builder_basesoc_new_master_rdata_valid6 <= builder_basesoc_new_master_rdata_valid5;
     builder_basesoc_new_master_rdata_valid7 <= builder_basesoc_new_master_rdata_valid6;
     builder_basesoc_new_master_rdata_valid8 <= builder_basesoc_new_master_rdata_valid7;
-    main_basesoc_adr_offset_r <= main_basesoc_wb_sdram_adr[1:0];
-    builder_basesoc_fullmemorywe_state <= builder_basesoc_fullmemorywe_next_state;
     builder_basesoc_litedramwishbone2native_state <= builder_basesoc_litedramwishbone2native_next_state;
     if (main_basesoc_aborted_litedramwishbone2native_next_value_ce) begin
         main_basesoc_aborted <= main_basesoc_aborted_litedramwishbone2native_next_value;
@@ -11172,7 +11090,6 @@ always @(posedge sys_clk) begin
         builder_basesoc_new_master_rdata_valid6 <= 1'd0;
         builder_basesoc_new_master_rdata_valid7 <= 1'd0;
         builder_basesoc_new_master_rdata_valid8 <= 1'd0;
-        builder_basesoc_fullmemorywe_state <= 2'd0;
         builder_basesoc_litedramwishbone2native_state <= 2'd0;
         builder_basesoc_wishbone2csr_state <= 2'd0;
     end
@@ -11230,10 +11147,10 @@ assign main_crg_clkout_buf6 = main_crg_clkout6;
 `endif
 
 //------------------------------------------------------------------------------
-// Memory rom: 6364-words x 32-bit
+// Memory rom: 6438-words x 32-bit
 //------------------------------------------------------------------------------
 // Port 0 | Read: Sync  | Write: ---- | 
-reg [31:0] rom[0:6363];
+reg [31:0] rom[0:6437];
 initial begin
 	$readmemh("digilent_arty_rom.init", rom);
 end
@@ -14123,19 +14040,6 @@ assign main_basesoc_sdram_bankmachine7_wrport_dat_r = storage_9_dat0;
 assign main_basesoc_sdram_bankmachine7_rdport_dat_r = storage_9[main_basesoc_sdram_bankmachine7_rdport_adr];
 
 
-//------------------------------------------------------------------------------
-// Memory tag_mem: 512-words x 24-bit
-//------------------------------------------------------------------------------
-// Port 0 | Read: Sync  | Write: Sync | Mode: Write-First | Write-Granularity: 24 
-reg [23:0] tag_mem[0:511];
-reg [8:0] tag_mem_adr0;
-always @(posedge sys_clk) begin
-	if (main_basesoc_tag_port_we)
-		tag_mem[main_basesoc_tag_port_adr] <= main_basesoc_tag_port_dat_w;
-	tag_mem_adr0 <= main_basesoc_tag_port_adr;
-end
-assign main_basesoc_tag_port_dat_r = tag_mem[tag_mem_adr0];
-
 `ifndef HME
 FDCE FDCE(
 	.C(main_crg_clkin),
@@ -14325,8 +14229,8 @@ PLLE2_ADV_HME PLLE2_ADV (
 	.CLKOUT1(main_crg_clkout1),
 	.CLKOUT2(main_crg_clkout2),
 	.CLKOUT3(main_crg_clkout3),
-	.CLKOUT4(main_crg_clkout6),
-	.CLKOUT5(main_crg_clkout5),
+	.CLKOUT4(main_crg_clkout5),
+	.CLKOUT5(main_crg_clkout6),
 	.LOCKED(main_crg_locked)
 );
 `endif
@@ -14366,229 +14270,6 @@ VexRiscv VexRiscv(
 	.iBusWishbone_STB(main_basesoc_ibus_stb),
 	.iBusWishbone_WE(main_basesoc_ibus_we)
 );
-
-//------------------------------------------------------------------------------
-// Memory data_mem_grain0: 512-words x 8-bit
-//------------------------------------------------------------------------------
-// Port 0 | Read: Sync  | Write: Sync | Mode: Write-First | Write-Granularity: 8 
-reg [7:0] data_mem_grain0[0:511];
-reg [8:0] data_mem_grain0_adr0;
-always @(posedge sys_clk) begin
-	if (main_basesoc_data_port_we[0])
-		data_mem_grain0[main_basesoc_data_port_adr] <= main_basesoc_data_port_dat_w[7:0];
-	data_mem_grain0_adr0 <= main_basesoc_data_port_adr;
-end
-assign main_basesoc_data_port_dat_r[7:0] = data_mem_grain0[data_mem_grain0_adr0];
-
-
-//------------------------------------------------------------------------------
-// Memory data_mem_grain1: 512-words x 8-bit
-//------------------------------------------------------------------------------
-// Port 0 | Read: Sync  | Write: Sync | Mode: Write-First | Write-Granularity: 8 
-reg [7:0] data_mem_grain1[0:511];
-reg [8:0] data_mem_grain1_adr0;
-always @(posedge sys_clk) begin
-	if (main_basesoc_data_port_we[1])
-		data_mem_grain1[main_basesoc_data_port_adr] <= main_basesoc_data_port_dat_w[15:8];
-	data_mem_grain1_adr0 <= main_basesoc_data_port_adr;
-end
-assign main_basesoc_data_port_dat_r[15:8] = data_mem_grain1[data_mem_grain1_adr0];
-
-
-//------------------------------------------------------------------------------
-// Memory data_mem_grain2: 512-words x 8-bit
-//------------------------------------------------------------------------------
-// Port 0 | Read: Sync  | Write: Sync | Mode: Write-First | Write-Granularity: 8 
-reg [7:0] data_mem_grain2[0:511];
-reg [8:0] data_mem_grain2_adr0;
-always @(posedge sys_clk) begin
-	if (main_basesoc_data_port_we[2])
-		data_mem_grain2[main_basesoc_data_port_adr] <= main_basesoc_data_port_dat_w[23:16];
-	data_mem_grain2_adr0 <= main_basesoc_data_port_adr;
-end
-assign main_basesoc_data_port_dat_r[23:16] = data_mem_grain2[data_mem_grain2_adr0];
-
-
-//------------------------------------------------------------------------------
-// Memory data_mem_grain3: 512-words x 8-bit
-//------------------------------------------------------------------------------
-// Port 0 | Read: Sync  | Write: Sync | Mode: Write-First | Write-Granularity: 8 
-reg [7:0] data_mem_grain3[0:511];
-reg [8:0] data_mem_grain3_adr0;
-always @(posedge sys_clk) begin
-	if (main_basesoc_data_port_we[3])
-		data_mem_grain3[main_basesoc_data_port_adr] <= main_basesoc_data_port_dat_w[31:24];
-	data_mem_grain3_adr0 <= main_basesoc_data_port_adr;
-end
-assign main_basesoc_data_port_dat_r[31:24] = data_mem_grain3[data_mem_grain3_adr0];
-
-
-//------------------------------------------------------------------------------
-// Memory data_mem_grain4: 512-words x 8-bit
-//------------------------------------------------------------------------------
-// Port 0 | Read: Sync  | Write: Sync | Mode: Write-First | Write-Granularity: 8 
-reg [7:0] data_mem_grain4[0:511];
-reg [8:0] data_mem_grain4_adr0;
-always @(posedge sys_clk) begin
-	if (main_basesoc_data_port_we[4])
-		data_mem_grain4[main_basesoc_data_port_adr] <= main_basesoc_data_port_dat_w[39:32];
-	data_mem_grain4_adr0 <= main_basesoc_data_port_adr;
-end
-assign main_basesoc_data_port_dat_r[39:32] = data_mem_grain4[data_mem_grain4_adr0];
-
-
-//------------------------------------------------------------------------------
-// Memory data_mem_grain5: 512-words x 8-bit
-//------------------------------------------------------------------------------
-// Port 0 | Read: Sync  | Write: Sync | Mode: Write-First | Write-Granularity: 8 
-reg [7:0] data_mem_grain5[0:511];
-reg [8:0] data_mem_grain5_adr0;
-always @(posedge sys_clk) begin
-	if (main_basesoc_data_port_we[5])
-		data_mem_grain5[main_basesoc_data_port_adr] <= main_basesoc_data_port_dat_w[47:40];
-	data_mem_grain5_adr0 <= main_basesoc_data_port_adr;
-end
-assign main_basesoc_data_port_dat_r[47:40] = data_mem_grain5[data_mem_grain5_adr0];
-
-
-//------------------------------------------------------------------------------
-// Memory data_mem_grain6: 512-words x 8-bit
-//------------------------------------------------------------------------------
-// Port 0 | Read: Sync  | Write: Sync | Mode: Write-First | Write-Granularity: 8 
-reg [7:0] data_mem_grain6[0:511];
-reg [8:0] data_mem_grain6_adr0;
-always @(posedge sys_clk) begin
-	if (main_basesoc_data_port_we[6])
-		data_mem_grain6[main_basesoc_data_port_adr] <= main_basesoc_data_port_dat_w[55:48];
-	data_mem_grain6_adr0 <= main_basesoc_data_port_adr;
-end
-assign main_basesoc_data_port_dat_r[55:48] = data_mem_grain6[data_mem_grain6_adr0];
-
-
-//------------------------------------------------------------------------------
-// Memory data_mem_grain7: 512-words x 8-bit
-//------------------------------------------------------------------------------
-// Port 0 | Read: Sync  | Write: Sync | Mode: Write-First | Write-Granularity: 8 
-reg [7:0] data_mem_grain7[0:511];
-reg [8:0] data_mem_grain7_adr0;
-always @(posedge sys_clk) begin
-	if (main_basesoc_data_port_we[7])
-		data_mem_grain7[main_basesoc_data_port_adr] <= main_basesoc_data_port_dat_w[63:56];
-	data_mem_grain7_adr0 <= main_basesoc_data_port_adr;
-end
-assign main_basesoc_data_port_dat_r[63:56] = data_mem_grain7[data_mem_grain7_adr0];
-
-
-//------------------------------------------------------------------------------
-// Memory data_mem_grain8: 512-words x 8-bit
-//------------------------------------------------------------------------------
-// Port 0 | Read: Sync  | Write: Sync | Mode: Write-First | Write-Granularity: 8 
-reg [7:0] data_mem_grain8[0:511];
-reg [8:0] data_mem_grain8_adr0;
-always @(posedge sys_clk) begin
-	if (main_basesoc_data_port_we[8])
-		data_mem_grain8[main_basesoc_data_port_adr] <= main_basesoc_data_port_dat_w[71:64];
-	data_mem_grain8_adr0 <= main_basesoc_data_port_adr;
-end
-assign main_basesoc_data_port_dat_r[71:64] = data_mem_grain8[data_mem_grain8_adr0];
-
-
-//------------------------------------------------------------------------------
-// Memory data_mem_grain9: 512-words x 8-bit
-//------------------------------------------------------------------------------
-// Port 0 | Read: Sync  | Write: Sync | Mode: Write-First | Write-Granularity: 8 
-reg [7:0] data_mem_grain9[0:511];
-reg [8:0] data_mem_grain9_adr0;
-always @(posedge sys_clk) begin
-	if (main_basesoc_data_port_we[9])
-		data_mem_grain9[main_basesoc_data_port_adr] <= main_basesoc_data_port_dat_w[79:72];
-	data_mem_grain9_adr0 <= main_basesoc_data_port_adr;
-end
-assign main_basesoc_data_port_dat_r[79:72] = data_mem_grain9[data_mem_grain9_adr0];
-
-
-//------------------------------------------------------------------------------
-// Memory data_mem_grain10: 512-words x 8-bit
-//------------------------------------------------------------------------------
-// Port 0 | Read: Sync  | Write: Sync | Mode: Write-First | Write-Granularity: 8 
-reg [7:0] data_mem_grain10[0:511];
-reg [8:0] data_mem_grain10_adr0;
-always @(posedge sys_clk) begin
-	if (main_basesoc_data_port_we[10])
-		data_mem_grain10[main_basesoc_data_port_adr] <= main_basesoc_data_port_dat_w[87:80];
-	data_mem_grain10_adr0 <= main_basesoc_data_port_adr;
-end
-assign main_basesoc_data_port_dat_r[87:80] = data_mem_grain10[data_mem_grain10_adr0];
-
-
-//------------------------------------------------------------------------------
-// Memory data_mem_grain11: 512-words x 8-bit
-//------------------------------------------------------------------------------
-// Port 0 | Read: Sync  | Write: Sync | Mode: Write-First | Write-Granularity: 8 
-reg [7:0] data_mem_grain11[0:511];
-reg [8:0] data_mem_grain11_adr0;
-always @(posedge sys_clk) begin
-	if (main_basesoc_data_port_we[11])
-		data_mem_grain11[main_basesoc_data_port_adr] <= main_basesoc_data_port_dat_w[95:88];
-	data_mem_grain11_adr0 <= main_basesoc_data_port_adr;
-end
-assign main_basesoc_data_port_dat_r[95:88] = data_mem_grain11[data_mem_grain11_adr0];
-
-
-//------------------------------------------------------------------------------
-// Memory data_mem_grain12: 512-words x 8-bit
-//------------------------------------------------------------------------------
-// Port 0 | Read: Sync  | Write: Sync | Mode: Write-First | Write-Granularity: 8 
-reg [7:0] data_mem_grain12[0:511];
-reg [8:0] data_mem_grain12_adr0;
-always @(posedge sys_clk) begin
-	if (main_basesoc_data_port_we[12])
-		data_mem_grain12[main_basesoc_data_port_adr] <= main_basesoc_data_port_dat_w[103:96];
-	data_mem_grain12_adr0 <= main_basesoc_data_port_adr;
-end
-assign main_basesoc_data_port_dat_r[103:96] = data_mem_grain12[data_mem_grain12_adr0];
-
-
-//------------------------------------------------------------------------------
-// Memory data_mem_grain13: 512-words x 8-bit
-//------------------------------------------------------------------------------
-// Port 0 | Read: Sync  | Write: Sync | Mode: Write-First | Write-Granularity: 8 
-reg [7:0] data_mem_grain13[0:511];
-reg [8:0] data_mem_grain13_adr0;
-always @(posedge sys_clk) begin
-	if (main_basesoc_data_port_we[13])
-		data_mem_grain13[main_basesoc_data_port_adr] <= main_basesoc_data_port_dat_w[111:104];
-	data_mem_grain13_adr0 <= main_basesoc_data_port_adr;
-end
-assign main_basesoc_data_port_dat_r[111:104] = data_mem_grain13[data_mem_grain13_adr0];
-
-
-//------------------------------------------------------------------------------
-// Memory data_mem_grain14: 512-words x 8-bit
-//------------------------------------------------------------------------------
-// Port 0 | Read: Sync  | Write: Sync | Mode: Write-First | Write-Granularity: 8 
-reg [7:0] data_mem_grain14[0:511];
-reg [8:0] data_mem_grain14_adr0;
-always @(posedge sys_clk) begin
-	if (main_basesoc_data_port_we[14])
-		data_mem_grain14[main_basesoc_data_port_adr] <= main_basesoc_data_port_dat_w[119:112];
-	data_mem_grain14_adr0 <= main_basesoc_data_port_adr;
-end
-assign main_basesoc_data_port_dat_r[119:112] = data_mem_grain14[data_mem_grain14_adr0];
-
-
-//------------------------------------------------------------------------------
-// Memory data_mem_grain15: 512-words x 8-bit
-//------------------------------------------------------------------------------
-// Port 0 | Read: Sync  | Write: Sync | Mode: Write-First | Write-Granularity: 8 
-reg [7:0] data_mem_grain15[0:511];
-reg [8:0] data_mem_grain15_adr0;
-always @(posedge sys_clk) begin
-	if (main_basesoc_data_port_we[15])
-		data_mem_grain15[main_basesoc_data_port_adr] <= main_basesoc_data_port_dat_w[127:120];
-	data_mem_grain15_adr0 <= main_basesoc_data_port_adr;
-end
-assign main_basesoc_data_port_dat_r[127:120] = data_mem_grain15[data_mem_grain15_adr0];
 
 `ifndef HME
 (* ars_ff1 = "true", async_reg = "true" *)

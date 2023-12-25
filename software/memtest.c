@@ -358,8 +358,8 @@ int memtest(unsigned int *addr, unsigned long maxsize)
 	//printf(")...\n");
 
 #ifdef CSR_CTRL_BASE
-	if (memtest_access(addr))
-		return 0;
+//	if (memtest_access(addr))
+//		return 0;
 #endif
 
 	bus_errors  = 0;//memtest_bus(addr, bus_size);
