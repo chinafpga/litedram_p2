@@ -2539,11 +2539,11 @@ wire          sys_rst_pre;
 
 `ifndef SIM
 //debugware
-//debugware_v2_1 debugware_v2_2_inst(
-//    .trig_out_0(  ),
-//    .data_in_0 ( {builder_csr_bankarray_csrbank3_dfii_pi0_wrdata0_re,main_a7ddrphy_dfi_p0_address[13:0],main_a7ddrphy_dfi_p0_bank[2:0],main_a7ddrphy_dfi_p0_cas_n,main_a7ddrphy_dfi_p0_cs_n,main_a7ddrphy_dfi_p0_ras_n,main_a7ddrphy_dfi_p0_we_n,main_a7ddrphy_dfi_p0_cke,main_a7ddrphy_dfi_p0_odt,main_a7ddrphy_dfi_p0_reset_n,main_a7ddrphy_dfi_p0_act_n,main_a7ddrphy_dfi_p0_wrdata[31:0],main_a7ddrphy_dfi_p0_wrdata_en,main_a7ddrphy_dfi_p0_wrdata_mask[3:0],main_a7ddrphy_dfi_p0_rddata_en,main_a7ddrphy_dfi_p0_rddata[31:0],main_a7ddrphy_dfi_p0_rddata_valid} ),
-//    .ref_clk_0 ( sys_clk )
-//);
+debugware_v2_1 debugware_v2_1_inst(
+    .trig_out_0(  ),
+    .data_in_0 ( {main_a7ddrphy_bitslip02[7:0],main_a7ddrphy_bitslip03[7:0],main_a7ddrphy_dfi_p3_cs_n,main_a7ddrphy_dfi_p3_cas_n,main_a7ddrphy_dfi_p3_ras_n,main_a7ddrphy_dfi_p3_we_n,main_a7ddrphy_dfi_p0_wrdata[31:0]} ),
+    .ref_clk_0 ( sys_clk )
+);
 `endif
 
 //------------------------------------------------------------------------------

@@ -13,7 +13,7 @@ vlib questa_lib/msim/hme_defaultlib
 
 vmap hme_defaultlib questa_lib/msim/hme_defaultlib
 
-vlog  -incr -mfcu -work hme_defaultlib  "+incdir+../src/imports/" \
+vlog  -incr -mfcu -work hme_defaultlib +define+SIM "+incdir+../src/imports/" \
 "../src/p0_src/pll_v1.v" \
 "../src/p0_src/PLLE2_ADV_HME.v" \
 "../src/p0_src/FDCE_HME.v" \

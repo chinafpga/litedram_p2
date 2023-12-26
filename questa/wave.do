@@ -12,7 +12,17 @@ add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/ddram_ras_n
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/ddram_cas_n
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/ddram_we_n
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/ddram_cs_n
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/main_a7ddrphy_dfi_p0_cas_n
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/main_a7ddrphy_dfi_p1_cas_n
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/main_a7ddrphy_dfi_p2_cas_n
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/main_a7ddrphy_dfi_p3_cas_n
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/main_a7ddrphy_dfi_p0_we_n
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/main_a7ddrphy_dfi_p1_we_n
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/main_a7ddrphy_dfi_p2_we_n
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/main_a7ddrphy_dfi_p3_we_n
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/ddram_dm
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_29/d_0
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_29/q_0
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/main_a7ddrphy_bitslip03
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/ddram_dq
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/ddram_dqs_p
@@ -33,6 +43,7 @@ add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/sys4x_clk
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/sys_clk
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/main_a7ddrphy_dq_i_delayed0
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/sys_rst
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2/d_0
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/main_a7ddrphy_bitslip03
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/main_a7ddrphy_dq_i_delayed0
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/main_a7ddrphy_dq_i_nodelay0
@@ -175,10 +186,11 @@ add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/main_a7ddrphy_dfi_p3_cs_n
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/main_a7ddrphy_dfi_p2_cs_n
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/main_a7ddrphy_dfi_p1_cs_n
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/main_a7ddrphy_dfi_p0_cs_n
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/sys_clk
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {24713493888 ps} 0} {{Cursor 2} {35974544911 ps} 0} {{Cursor 3} {1198311761 ps} 0}
-quietly wave cursor active 3
-configure wave -namecolwidth 528
+WaveRestoreCursors {{Cursor 1} {1514768011 ps} 0}
+quietly wave cursor active 1
+configure wave -namecolwidth 373
 configure wave -valuecolwidth 100
 configure wave -justifyvalue left
 configure wave -signalnamewidth 0
@@ -192,4 +204,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {1198267159 ps} {1198356363 ps}
+WaveRestoreZoom {1514536007 ps} {1515108112 ps}
