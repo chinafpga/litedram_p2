@@ -60,7 +60,11 @@ if (rst)
 	update_ol_cnt <= 2'b00;
 else 
 	update_ol_cnt <= update_ol_cnt + 1'b1;
+`ifdef SIM	
 assign update_ol = (update_ol_cnt == 2'b01) ? 1'b1 : 1'b0;
+`else
+assign update_ol = (update_ol_cnt == 2'b10) ? 1'b1 : 1'b0;
+`endif
 
 reg [3:0] d_0_d1;
 always @(posedge gsclk_ol or posedge rst)

@@ -2537,11 +2537,17 @@ reg           builder_regs1 = 1'd0;
 wire          sys_rst_pre;
 `endif
 
+wire trig_out_0;
+reg mode_set;
+
+always @(posedge sys_clk)
+  mode_set = (!main_a7ddrphy_dfi_p0_cs_n) & (!main_a7ddrphy_dfi_p0_cas_n) & (!main_a7ddrphy_dfi_p0_ras_n) & (!main_a7ddrphy_dfi_p0_we_n);
+
 `ifndef SIM
 //debugware
 debugware_v2_1 debugware_v2_1_inst(
-    .trig_out_0(  ),
-    .data_in_0 ( {main_a7ddrphy_bitslip02[7:0],main_a7ddrphy_bitslip03[7:0],main_a7ddrphy_dfi_p3_cs_n,main_a7ddrphy_dfi_p3_cas_n,main_a7ddrphy_dfi_p3_ras_n,main_a7ddrphy_dfi_p3_we_n,main_a7ddrphy_dfi_p0_wrdata[31:0]} ),
+    .trig_out_0( trig_out_0 ),
+    .data_in_0 ( {main_a7ddrphy_dfi_p3_cke,main_a7ddrphy_dfi_p3_cs_n,main_a7ddrphy_dfi_p3_cas_n,main_a7ddrphy_dfi_p3_ras_n, main_a7ddrphy_dfi_p3_we_n,main_a7ddrphy_dfi_p2_cke,main_a7ddrphy_dfi_p2_cs_n,main_a7ddrphy_dfi_p2_cas_n,main_a7ddrphy_dfi_p2_ras_n,main_a7ddrphy_dfi_p2_we_n,main_a7ddrphy_dfi_p1_cke,main_a7ddrphy_dfi_p1_cs_n,main_a7ddrphy_dfi_p1_cas_n,main_a7ddrphy_dfi_p1_ras_n,main_a7ddrphy_dfi_p1_we_n,main_a7ddrphy_dfi_p0_cke,main_a7ddrphy_dfi_p0_cs_n,main_a7ddrphy_dfi_p0_cas_n,main_a7ddrphy_dfi_p0_ras_n,main_a7ddrphy_dfi_p0_we_n,main_a7ddrphy_bitslip02[7:0],main_a7ddrphy_bitslip03[7:0],main_a7ddrphy_dfi_p0_rddata[31:0],main_a7ddrphy_dfi_p0_wrdata[31:0]} ),
     .ref_clk_0 ( sys_clk )
 );
 `endif
@@ -11359,7 +11365,7 @@ OSERDESE2 #(
 	.OQ(ddram_reset_n)
 );
 `else
-/*sdrio_x1 OSERDESE2_1(
+sdrio_x1 OSERDESE2_1(
     .geclk_ol(sys4x_clk),
     .gsclk_ol(sys_clk),
     .geclk_il(),
@@ -11374,7 +11380,7 @@ OSERDESE2 #(
     .q_0(),
     .dq_0(ddram_reset_n) 
 );
-*/
+
 /*ddrio_x2 OSERDESE2_1( //P0 HPIO LVDS pair P: ddram_cs_n, N: NC
     .geclk_ol(sys4x_clk),
     .gsclk_ol(sys_clk),
@@ -11421,7 +11427,7 @@ OSERDESE2 #(
 	.OQ(ddram_cs_n)
 );
 `else
-/*sdrio_x1 OSERDESE2_2(
+sdrio_x1 OSERDESE2_2(
     .geclk_ol(sys4x_clk),
     .gsclk_ol(sys_clk),
     .geclk_il(),
@@ -11436,7 +11442,7 @@ OSERDESE2 #(
     .q_0(),
     .dq_0(ddram_cs_n) 
 );
-*/
+
 /*ddrio_x2 OSERDESE2_2( //P0 HPIO LVDS pair P: ddram_cs_n, N: NC
     .geclk_ol(sys4x_clk),
     .gsclk_ol(sys_clk),
@@ -12817,11 +12823,11 @@ ddrio_x2 OSERDESE2_32 ( //P0 HPIO LVDS pair P: ddram_dq[3], N: NC, ddram_reset_n
     .t_0({4{~main_a7ddrphy_dq_oe_delay_tappeddelayline_tappeddelayline1}}),
     .d_0(main_a7ddrphy_bitslip30[7:0]),
     .q_0({main_a7ddrphy_bitslip31[0],main_a7ddrphy_bitslip31[1],main_a7ddrphy_bitslip31[2],main_a7ddrphy_bitslip31[3],main_a7ddrphy_bitslip31[4],main_a7ddrphy_bitslip31[5],main_a7ddrphy_bitslip31[6],main_a7ddrphy_bitslip31[7]}),
-    .dq_0(ddram_dq[3]),
+    .dq_0(ddram_dq[3])/*,
 	  .t_1({4{1'b0}}),
     .d_1({main_a7ddrphy_dfi_p3_reset_n,main_a7ddrphy_dfi_p3_reset_n,main_a7ddrphy_dfi_p2_reset_n,main_a7ddrphy_dfi_p2_reset_n,main_a7ddrphy_dfi_p1_reset_n,main_a7ddrphy_dfi_p1_reset_n,main_a7ddrphy_dfi_p0_reset_n,main_a7ddrphy_dfi_p0_reset_n}),
     .q_1(),
-    .dq_1(ddram_reset_n) 
+    .dq_1(ddram_reset_n)*/ 
 );
 `endif
 
@@ -13341,11 +13347,11 @@ ddrio_x2 OSERDESE2_38 ( //P0 HPIO LVDS pair P: ddram_dq[9], N: NC, ddram_cs_n fo
     .t_0({4{~main_a7ddrphy_dq_oe_delay_tappeddelayline_tappeddelayline1}}),
     .d_0(main_a7ddrphy_bitslip90[7:0]),
     .q_0({main_a7ddrphy_bitslip91[0],main_a7ddrphy_bitslip91[1],main_a7ddrphy_bitslip91[2],main_a7ddrphy_bitslip91[3],main_a7ddrphy_bitslip91[4],main_a7ddrphy_bitslip91[5],main_a7ddrphy_bitslip91[6],main_a7ddrphy_bitslip91[7]}),
-    .dq_0(ddram_dq[9]),
+    .dq_0(ddram_dq[9])/*,
     .t_1({4{1'b0}}),
     .d_1({main_a7ddrphy_dfi_p3_cs_n,main_a7ddrphy_dfi_p3_cs_n,main_a7ddrphy_dfi_p2_cs_n,main_a7ddrphy_dfi_p2_cs_n,main_a7ddrphy_dfi_p1_cs_n,main_a7ddrphy_dfi_p1_cs_n,main_a7ddrphy_dfi_p0_cs_n,main_a7ddrphy_dfi_p0_cs_n}),
     .q_1(),
-    .dq_1(ddram_cs_n) 
+    .dq_1(ddram_cs_n)*/ 
 );
 `endif
 
@@ -14236,8 +14242,8 @@ PLLE2_ADV_HME PLLE2_ADV (
 `endif
 
 assign test[0] = main_crg_clkout0;
-assign test[1] = main_crg_clkout1;
-assign test[2] = main_crg_clkout2;
+assign test[1] = trig_out_0;//main_crg_clkout1;
+assign test[2] = mode_set;//main_crg_clkout2;
 assign test[3] = main_crg_clkout3;
 
 VexRiscv VexRiscv(

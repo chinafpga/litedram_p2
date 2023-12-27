@@ -150,7 +150,7 @@ u_idet_0 (
 P2_IOC_LVDS #(
 	//Output Attributes
     .CFG_CKEN_EN0_O       (1'b1		  ),
-    .CFG_CKEN_EN1_O       (1'b1		  ),
+    .CFG_CKEN_EN1_O       (1'b0		  ),
     .CFG_CKEN_INV_O       (1'b0		  ),
     .CFG_FCLK0_O_EN       (1'b1		  ),
     .CFG_FCLK1_O_EN       (1'b1		  ),
@@ -428,7 +428,7 @@ defparam cvlvds_inst0.CFG_LDR 		       = 2'h1	   ;
 defparam cvlvds_inst0.CFG_NS_LV_1 		   = 3  	   ;
 defparam cvlvds_inst0.CFG_INTREF_VREF_EN  = 1'b1	   ; //DDR need 1 ?
 defparam cvlvds_inst0.CFG_RX_DIFF_EN	   = 1'b0	   ;
-defparam cvlvds_inst0.CFG_INTREF_VREF_SEL = 4'h0	   ; //DDR need ?
+defparam cvlvds_inst0.CFG_INTREF_VREF_SEL = 4'hf	   ; //DDR need ?
 defparam cvlvds_inst0.CFG_DYN_LP0 		   = 1'b0	   ;
 defparam cvlvds_inst0.CFG_DYN_LP1 		   = 1'b0	   ;
 
