@@ -12376,7 +12376,7 @@ OSERDESE2 #(
 ddrio_x2 OSERDESE2_27( //P0 HPIO LVDS pair P: ddram_dm[0], N: ddram_dq[5]
     .geclk_ol(sys4x_clk),
     .gsclk_ol(sys_clk),
-    .geclk_il(sys4x_clk),
+    .geclk_il(sys4x_iserdes_clk),
     .gsclk_il(sys_clk),
     .align_rst_ol(sys_rst_pre),
     .rst((sys_rst | main_a7ddrphy_rst_storage)),
@@ -12422,7 +12422,7 @@ OSERDESE2 #(
 ddrio_x2 OSERDESE2_28( //P0 HPIO LVDS pair P: ddram_dm[1], N: ddram_dq[12]
     .geclk_ol(sys4x_clk),
     .gsclk_ol(sys_clk),
-    .geclk_il(sys4x_clk),
+    .geclk_il(sys4x_iserdes_clk),
     .gsclk_il(sys_clk),
     .align_rst_ol(sys_rst_pre),
     .rst((sys_rst | main_a7ddrphy_rst_storage)),
@@ -12526,7 +12526,7 @@ IOBUF IOBUF(
 ddrio_x2 OSERDESE2_29( //P0 HPIO LVDS pair P: ddram_dq[0], N: ddram_dq[6]
     .geclk_ol(sys4x_clk),
     .gsclk_ol(sys_clk),
-    .geclk_il(sys4x_clk),
+    .geclk_il(sys4x_iserdes_clk),
     .gsclk_il(sys_clk),
     .align_rst_ol(sys_rst_pre),
     .rst((sys_rst | main_a7ddrphy_rst_storage)),
@@ -12709,7 +12709,7 @@ IOBUF IOBUF_2(
 ddrio_x2 OSERDESE2_31( //P0 HPIO LVDS pair P: ddram_dq[2], N: ddram_dq[1]
     .geclk_ol(sys4x_clk),
     .gsclk_ol(sys_clk),
-    .geclk_il(sys4x_clk),
+    .geclk_il(sys4x_iserdes_clk),
     .gsclk_il(sys_clk),
     .align_rst_ol(sys_rst_pre),
     .rst((sys_rst | main_a7ddrphy_rst_storage)),
@@ -12811,7 +12811,7 @@ IOBUF IOBUF_3(
 ddrio_x2 OSERDESE2_32 ( //P0 HPIO LVDS pair P: ddram_dq[3], N: NC, ddram_reset_n for fuxi compile test
     .geclk_ol(sys4x_clk),
     .gsclk_ol(sys_clk),
-    .geclk_il(sys4x_clk),
+    .geclk_il(sys4x_iserdes_clk),
     .gsclk_il(sys_clk),
     .align_rst_ol(sys_rst_pre),
     .rst((sys_rst | main_a7ddrphy_rst_storage)),
@@ -12913,7 +12913,7 @@ IOBUF IOBUF_4(
 ddrio_x2 OSERDESE2_33 ( //P0 HPIO LVDS pair P: ddram_dq[4], N: ddram_dq[7]
     .geclk_ol(sys4x_clk),
     .gsclk_ol(sys_clk),
-    .geclk_il(sys4x_clk),
+    .geclk_il(sys4x_iserdes_clk),
     .gsclk_il(sys_clk),
     .align_rst_ol(sys_rst_pre),
     .rst((sys_rst | main_a7ddrphy_rst_storage)),
@@ -13335,7 +13335,7 @@ IOBUF IOBUF_9(
 ddrio_x2 OSERDESE2_38 ( //P0 HPIO LVDS pair P: ddram_dq[9], N: NC, ddram_cs_n for fuxi compile test
     .geclk_ol(sys4x_clk),
     .gsclk_ol(sys_clk),
-    .geclk_il(sys4x_clk),
+    .geclk_il(sys4x_iserdes_clk),
     .gsclk_il(sys_clk),
     .align_rst_ol(sys_rst_pre),
     .rst((sys_rst | main_a7ddrphy_rst_storage)),
@@ -13437,7 +13437,7 @@ IOBUF IOBUF_10(
 ddrio_x2 OSERDESE2_39 ( //P0 HPIO LVDS pair P: ddram_dq[10], N: ddram_dq[14]
     .geclk_ol(sys4x_clk),
     .gsclk_ol(sys_clk),
-    .geclk_il(sys4x_clk),
+    .geclk_il(sys4x_iserdes_clk),
     .gsclk_il(sys_clk),
     .align_rst_ol(sys_rst_pre),
     .rst((sys_rst | main_a7ddrphy_rst_storage)),
@@ -13539,7 +13539,7 @@ IOBUF IOBUF_11(
 ddrio_x2 OSERDESE2_40 ( //P0 HPIO LVDS pair P: ddram_dq[11], N: ddram_dq[8]
     .geclk_ol(sys4x_clk),
     .gsclk_ol(sys_clk),
-    .geclk_il(sys4x_clk),
+    .geclk_il(sys4x_iserdes_clk),
     .gsclk_il(sys_clk),
     .align_rst_ol(sys_rst_pre),
     .rst((sys_rst | main_a7ddrphy_rst_storage)),
@@ -13882,7 +13882,7 @@ IOBUF IOBUF_15(
 ddrio_x2 OSERDESE2_44 ( //P0 HPIO LVDS pair P: ddram_dq[15], N: ddram_dq[13]
     .geclk_ol(sys4x_clk),
     .gsclk_ol(sys_clk),
-    .geclk_il(sys4x_clk),
+    .geclk_il(sys4x_iserdes_clk),
     .gsclk_il(sys_clk),
     .align_rst_ol(sys_rst_pre),
     .rst((sys_rst | main_a7ddrphy_rst_storage)),
