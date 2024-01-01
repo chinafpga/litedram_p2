@@ -41,6 +41,7 @@ wire [15:0] internal_sout_data_0    ;
 reg align_rst_o;
 reg align_rst_i;
 reg align_ol_d1;
+reg align_il_d1;
 
 assign internal_sout_data_0 = {internal_sout1_0[0], internal_sout1_0[1], internal_sout1_0[2], internal_sout1_0[3], internal_sout1_0[4], internal_sout1_0[5],
                                 internal_shiftout0_il_0, internal_shiftout1_il_0,
@@ -76,9 +77,16 @@ always@(posedge geclk_ol_buf_o or posedge align_rst_ol)
 begin
 	if (align_rst_ol) begin
 		align_rst_o <= 1'b1;
-		align_rst_i <= 1'b1;
 	end else begin
 		align_rst_o <= 1'b0;
+	end
+end
+
+always@(posedge geclk_il_buf_o or posedge align_rst_ol)
+begin
+	if (align_rst_ol) begin
+		align_rst_i <= 1'b1;
+	end else begin
 		align_rst_i <= 1'b0;
 	end
 end
@@ -89,6 +97,14 @@ begin
 		align_ol_d1 <= 1'b1;
 	else
 		align_ol_d1 <= align_ol;
+end
+
+always@(posedge geclk_il_buf_o or posedge align_rst_ol)
+begin
+	if (align_rst_ol)
+		align_il_d1 <= 1'b1;
+	else
+		align_il_d1 <= align_il;
 end
 
 update_block_cnt #(
@@ -122,9 +138,9 @@ u_data_il_update_d0 (
     .det_enb    		  (internal_det_enb_0     ),
     .geclk      		  (geclk_il_buf_o         ),
     .gsclk      		  (gsclk_il		          ),
-    .align_rst            (align_rst_o			  ),
+    .align_rst            (align_rst_i			  ),
     //.align_rst  		  (rst     		          ),
-    .align_user 		  (align_il		          ),
+    .align_user 		  (align_il_d1		          ),
     .sysclk_adjust_retval (					      )
 );
 
@@ -138,8 +154,8 @@ key_detec_top #(
 u_idet_0 (
     .det_clk      		  (geclk_il_buf_o       ),
     .fp_det_en    		  (1'b0                 ),
-    .rst0         		  (align_rst_o                  ),
-    .rst1         		  (align_rst_o                  ),
+    .rst0         		  (align_rst_i                  ),
+    .rst1         		  (align_rst_i                  ),
     .det_out      		  (internal_det_out_0   ),
     .rst0_o       		  (internal_det_rst0_o_0),
     .rst1_o       		  (internal_det_rst1_o_0),
@@ -208,7 +224,7 @@ u_data_p  (
 	.oen_out 		( f_oen_0				    ),
 	.phy_odt_ctrl 	(phy_odt_ctrl_0 			),
 	.q 		   	( {q_0[0],q_0[1],q_0[2],q_0[3],q_0[4],q_0[5],q_0[6],q_0[7]} ),
-	.rst_il       	( align_rst_o 						),
+	.rst_il       	( align_rst_i 						),
 	.rst_ol       	( align_rst_o 						),
 	.rxd_dr       	( 							),
 	.rxd_in       	( id_0    					),
@@ -293,7 +309,7 @@ u_data_n  (
 	.oen_out 		( f_oen_1				    ),
 	.phy_odt_ctrl 	(phy_odt_ctrl_1 			),
 	.q 		   	    ( {q_1[0],q_1[1],q_1[2],q_1[3],q_1[4],q_1[5],q_1[6],q_1[7]} ),
-	.rst_il       	( align_rst_o 						),
+	.rst_il       	( align_rst_i 						),
 	.rst_ol       	( align_rst_o 						),
 	.rxd_dr       	( 							),
 	.rxd_in       	( id_1    					),

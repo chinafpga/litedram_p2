@@ -7,6 +7,7 @@
     <tbTopDesignInstName>digilent_arty_inst</tbTopDesignInstName>
     <ModelsimDoFileName>simulate/rtl_sim.do</ModelsimDoFileName>
     <MonitorSignal>Default|Default</MonitorSignal>
+    <IoConstraint>$(PRJ_DIR)/digilent_arty.aoc</IoConstraint>
     <command-args toolName="bg">
         <argument name="cpr">LZ</argument>
         <argument name="fcfg">1</argument>
@@ -15,23 +16,24 @@
         <argument name="identical_inst_opt">0</argument>
     </command-args>
     <files>
-        <file>$(PRJ_DIR)/src/imports/VexRiscv.v</file>
-        <file>$(PRJ_DIR)/src/p0_src/ddrio.v</file>
-        <file>$(PRJ_DIR)/src/p0_src/ddrio_dqs.v</file>
-        <file>$(PRJ_DIR)/src/p0_src/pll_v1.v</file>
-        <file>$(PRJ_DIR)/src/p0_src/PLLE2_ADV_HME.v</file>
-        <file>$(PRJ_DIR)/src/p0_src/FDCE_HME.v</file>
-        <file>$(PRJ_DIR)/src/p0_src/FDPE_HME.v</file>
-        <file>$(PRJ_DIR)/constraint/constraint.sdc</file>
-        <file>$(PRJ_DIR)/src/imports/digilent_arty.v</file>
-        <file>$(PRJ_DIR)/src/ddrio_x2.v</file>
-        <file>$(PRJ_DIR)/src/p0_src/ologic_aligner.v</file>
-        <file>$(PRJ_DIR)/src/sdrio_x1.v</file>
-        <file>$(PRJ_DIR)/src/debugware_v2_1.v</file>
-        <file isTestBench="1">$(PRJ_DIR)/src/imports/example_top.v</file>
-        <file isTestBench="1">$(PRJ_DIR)/src/imports/sim_tb_top.v</file>
-        <file isTestBench="1" type="N/A">$(PRJ_DIR)/src/imports/ddr3_model.sv</file>
-        <file isTestBench="1">$(PRJ_DIR)/src/imports/wiredly.v</file>
-        <file>$(PRJ_DIR)/src/imports/tag_mem.v</file>
+        <file library="work">$(PRJ_DIR)/src/imports/VexRiscv.v</file>
+        <file library="work">$(PRJ_DIR)/src/p0_src/ddrio.v</file>
+        <file library="work">$(PRJ_DIR)/src/p0_src/ddrio_dqs.v</file>
+        <file library="work">$(PRJ_DIR)/src/p0_src/pll_v1.v</file>
+        <file library="work">$(PRJ_DIR)/src/p0_src/PLLE2_ADV_HME.v</file>
+        <file library="work">$(PRJ_DIR)/src/p0_src/FDCE_HME.v</file>
+        <file library="work">$(PRJ_DIR)/src/p0_src/FDPE_HME.v</file>
+        <file library="work">$(PRJ_DIR)/constraint/constraint.sdc</file>
+        <file library="work">$(PRJ_DIR)/src/imports/digilent_arty.v</file>
+        <file library="work">$(PRJ_DIR)/src/ddrio_x2.v</file>
+        <file library="work">$(PRJ_DIR)/src/p0_src/ologic_aligner.v</file>
+        <file library="work">$(PRJ_DIR)/src/sdrio_x1.v</file>
+        <file library="work">$(PRJ_DIR)/src/debugware_v2_1.v</file>
+        <file library="work">$(PRJ_DIR)/src/imports/tag_mem.v</file>
+        <file isTestBench="1" library="work">$(PRJ_DIR)/src/imports/example_top.v</file>
+        <file isTestBench="1" library="work">$(PRJ_DIR)/src/imports/sim_tb_top.v</file>
+        <file isTestBench="1" type="N/A" library="work">$(PRJ_DIR)/src/imports/ddr3_model.sv</file>
+        <file isTestBench="1" library="work">$(PRJ_DIR)/src/imports/wiredly.v</file>
+        <file library="work">$(PRJ_DIR)/src/dbuf_v1.v</file>
     </files>
 </AgateProject>

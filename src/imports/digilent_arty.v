@@ -67,6 +67,7 @@ wire          sys4x_rst;
 wire          sys4x_dqs_clk;
 wire          sys4x_dqs_rst;
 wire          sys4x_iserdes_clk;
+wire          sys4x_iserdes_clk_h;
 wire          sys4x_iserdes_rst;
 wire          idelay_clk;
 wire          idelay_rst;
@@ -2580,7 +2581,7 @@ assign sys4x_dqs_clk = main_crg_clkout_buf3;
 assign idelay_clk = main_crg_clkout_buf4;
 assign sys4x_iserdes_clk = main_crg_clkout_buf5;
 `ifdef HME
-assign sys2x_clk = main_crg_clkout_buf6;//HME
+assign sys4x_iserdes_clk_h = main_crg_clkout_buf6;//HME
 `else
 
 `endif

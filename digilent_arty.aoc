@@ -42,7 +42,7 @@
 		<IO signal_name="ddram_dq_12_" pad_name="C0R25_PAD" location="IO12N_4" pin_no="V1" inst_name="OSERDESE2_28_cvlvds_inst0" direction="inout" operation_mode="normal"/>
 		<IO signal_name="ddram_dq_13_" pad_name="C0R19_PAD" location="IO9N_4" pin_no="T3" inst_name="OSERDESE2_44_cvlvds_inst0" direction="inout" operation_mode="normal"/>
 		<IO signal_name="ddram_dq_14_" pad_name="C0R23_PAD" location="IO11N_4" pin_no="U3" inst_name="OSERDESE2_39_cvlvds_inst0" direction="inout" operation_mode="normal"/>
-		<IO signal_name="ddram_dq_15_" pad_name="C0R18_PAD" location="IO9P_GCLK14_4" pin_no="R3" inst_name="OSERDESE2_44_cvlvds_inst0" direction="inout" operation_mode="normal"/>
+		<IO signal_name="ddram_dq_15_" pad_name="C0R18_PAD" location="IO9P_GCLK14_4" pin_no="R3" inst_name="OSERDESE2_44_cvlvds_inst0" direction="inout" operation_mode="normal" input_delay="24"/>
 		<IO signal_name="ddram_dqs_n_0_" pad_name="C0R46_PAD" location="IO10N_3" pin_no="N1" inst_name="OSERDESE2_25_cvlvds_inst0" direction="inout" operation_mode="normal"/>
 		<IO signal_name="ddram_dqs_n_1_" pad_name="C0R21_PAD" location="IO10N_4" pin_no="V2" inst_name="OSERDESE2_26_cvlvds_inst0" direction="inout" operation_mode="normal"/>
 		<IO signal_name="ddram_dqs_p_0_" pad_name="C0R45_PAD" location="IO10P_3" pin_no="N2" inst_name="OSERDESE2_25_cvlvds_inst0" direction="inout" operation_mode="normal"/>
@@ -63,29 +63,5 @@
 		<IO signal_name="user_led2" pad_name="C39R101_PAD" location="IO1P_5" pin_no="T9" inst_name="io_user_led2_inst" direction="output" operation_mode="normal"/>
 		<IO signal_name="user_led3" pad_name="C39R102_PAD" location="IO1N_5" pin_no="T10" inst_name="io_user_led3_inst" direction="output" operation_mode="normal"/>
 	</ioConstraint>
-	<pairedIoConstraint>
-		<Pair PAD0="ddram_a_7_" PAD1="ddram_a_11_" pairType="LVDS"/>
-		<Pair PAD0="ddram_a_8_" PAD1="ddram_a_13_" pairType="LVDS"/>
-		<Pair PAD0="ddram_a_9_" PAD1="ddram_a_6_" pairType="LVDS"/>
-		<Pair PAD0="ddram_a_10_" PAD1="ddram_odt" pairType="LVDS"/>
-		<Pair PAD0="ddram_ba_0_" PAD1="ddram_a_3_" pairType="LVDS"/>
-		<Pair PAD0="ddram_ba_1_" PAD1="ddram_ras_n" pairType="LVDS"/>
-		<Pair PAD0="ddram_ba_2_" PAD1="ddram_a_0_" pairType="LVDS"/>
-		<Pair PAD0="ddram_cas_n" PAD1="ddram_a_2_" pairType="LVDS"/>
-		<Pair PAD0="ddram_cke" PAD1="ddram_we_n" pairType="LVDS"/>
-		<Pair PAD0="ddram_dqs_p_0_" PAD1="ddram_dqs_n_0_" pairType="LVDS"/>
-		<Pair PAD0="ddram_dqs_p_1_" PAD1="ddram_dqs_n_1_" pairType="LVDS"/>
-		<Pair PAD0="ddram_dm_0_" PAD1="ddram_dq_5_" pairType="LVDS"/>
-		<Pair PAD0="ddram_dm_1_" PAD1="ddram_dq_12_" pairType="LVDS"/>
-		<Pair PAD0="ddram_dq_0_" PAD1="ddram_dq_6_" pairType="LVDS"/>
-		<Pair PAD0="ddram_dq_2_" PAD1="ddram_dq_1_" pairType="LVDS"/>
-		<Pair PAD0="ddram_dq_4_" PAD1="ddram_dq_7_" pairType="LVDS"/>
-		<Pair PAD0="ddram_dq_10_" PAD1="ddram_dq_14_" pairType="LVDS"/>
-		<Pair PAD0="ddram_dq_11_" PAD1="ddram_dq_8_" pairType="LVDS"/>
-		<Pair PAD0="ddram_dq_15_" PAD1="ddram_dq_13_" pairType="LVDS"/>
-		<Pair PAD0="ddram_a_1_" PAD1="ddram_a_4_" pairType="LVDS"/>
-		<Pair PAD0="ddram_a_5_" PAD1="ddram_a_12_" pairType="LVDS"/>
-		<Pair PAD0="ddram_clk_p" PAD1="ddram_clk_n" pairType="LVDS"/>
-	</pairedIoConstraint>
 </aoc>
 

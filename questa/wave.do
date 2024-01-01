@@ -187,10 +187,38 @@ add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/main_a7ddrphy_dfi_p2_cs_n
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/main_a7ddrphy_dfi_p1_cs_n
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/main_a7ddrphy_dfi_p0_cs_n
 add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/sys_clk
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_29/u_data_il_update_d0/sysclk_adjust_retval
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_29/u_data_il_update_d0/update
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_29/u_data_il_update_d0/update_b
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_29/u_data_il_update_d0/align_rst
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_29/u_data_il_update_d0/align_user
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_29/u_data_il_update_d0/det_enb
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_29/u_data_il_update_d0/det_out
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_29/u_data_il_update_d0/geclk
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_29/u_data_il_update_d0/gsclk
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_29/u_data_il_update_d0/w_geclk
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_29/u_data_il_update_d0/w_gsclk
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_29/u_data_il_update_d0/w_align_rst
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_29/u_data_il_update_d0/usermode
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_29/u_data_il_update_d0/geclk_buf
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_29/u_data_il_update_d0/usermode_b
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_29/u_data_il_update_d0/rst
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_29/u_data_il_update_d0/en
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_29/u_data_il_update_d0/net0106
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_29/u_data_il_update_d0/cnt_rst
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_29/u_data_il_update_d0/net063
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_29/u_data_il_update_d0/net072
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_29/u_data_il_update_d0/net094
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_29/u_data_il_update_d0/net079
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_29/u_data_il_update_d0/net082
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_29/u_data_il_update_d0/net096
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_29/u_data_il_update_d0/net062
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_29/u_data_il_update_d0/net061
+add wave -noupdate /sim_tb_top/u_ip_top/ddr_inst/OSERDESE2_29/u_data_il_update_d0/net060
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {1514768011 ps} 0}
+WaveRestoreCursors {{Cursor 1} {2740823 ps} 0}
 quietly wave cursor active 1
-configure wave -namecolwidth 373
+configure wave -namecolwidth 627
 configure wave -valuecolwidth 100
 configure wave -justifyvalue left
 configure wave -signalnamewidth 0
@@ -204,4 +232,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {1514536007 ps} {1515108112 ps}
+WaveRestoreZoom {2677087 ps} {2804559 ps}

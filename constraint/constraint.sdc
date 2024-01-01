@@ -13,3 +13,7 @@ create_clock -disable -period 3 -name {auto_0_jtag_fp_update_clk} [get_pins {deb
 create_clock -disable -period 3 -name {auto_1_jtag_fp_drck_clk} [get_pins {debugware_v2_2_inst_u_tap_genblk1_u_jtag/jtag_fp_drck}] -comment {auto_created}
 create_clock -disable -period 3 -name {auto_0_jtag_fp_update_clk} [get_pins {debugware_v2_1_inst_u_tap_genblk1_u_jtag/jtag_fp_update}] -comment {auto_created}
 create_clock -disable -period 3 -name {auto_1_jtag_fp_drck_clk} [get_pins {debugware_v2_1_inst_u_tap_genblk1_u_jtag/jtag_fp_drck}] -comment {auto_created}
+create_clock -period 2.5 -name {PLLE2_ADV_pll_v1_inst_pll_u0/CO4} [get_pins {PLLE2_ADV_pll_v1_inst_pll_u0/CO4}]
+create_clock -period 2.5 -name {PLLE2_ADV_pll_v1_inst_pll_u0/CO5} [get_pins {PLLE2_ADV_pll_v1_inst_pll_u0/CO5}]
+
+create_clock -period 3 -name {auto_0_Y_clk} [get_pins {GND_0_inst/Y}] -comment {auto_created}
